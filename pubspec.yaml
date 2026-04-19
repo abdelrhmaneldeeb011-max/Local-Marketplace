@@ -1,0 +1,48 @@
+name: Wafrnalak
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  easy_localization: ^3.0.7
+  intl: any
+  provider: ^6.1.1
+  cupertino_icons: ^1.0.8
+  rename_app: ^1.6.5
+  flutter_native_splash: ^2.4.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/Wafrnalk_Logo.jpg"
+# --- إعدادات Splash Screen (يجب أن تكون في بداية السطر) ---
+flutter_native_splash:
+  color: "#ffffff"
+  image: img/Wafrnalk_Logo_SplashScreen.png
+  android: true
+  ios: true
+  # اختياري: لدعم أندرويد 12 فما فوق بشكل أفضل
+  android_12:
+    color: "#ffffff"
+    image: img/Wafrnalk_Logo_SplashScreen.png
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  # --- تعريف مسار الصور ليتعرف عليها التطبيق ---
+  assets:
+    - assets/img/
+    - assets/translations/
