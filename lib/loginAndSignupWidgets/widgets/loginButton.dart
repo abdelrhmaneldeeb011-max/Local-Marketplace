@@ -1,5 +1,5 @@
-import '../screens/customer_home_screen.dart';
-import 'button.dart';
+import '../../screens/customer_home_screen.dart';
+import '../../widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class Loginbutton extends StatefulWidget {

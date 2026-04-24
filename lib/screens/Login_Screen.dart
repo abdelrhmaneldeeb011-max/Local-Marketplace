@@ -1,14 +1,14 @@
 // بسم الله الرحمن الرحيم //
 import '../app_bar.dart';
 import 'signUp_screen.dart';
-import '../widgets/alreadyHaveAccount.dart';
-import '../widgets/custom_field.dart';
-import '../widgets/loginButton.dart';
-import '../widgets/loginWith.dart';
-import '../widgets/marketImage.dart';
-import '../widgets/orDivider.dart';
-import '../widgets/passwordField.dart';
-import '../widgets/welcomeMassage.dart';
+import '../loginAndSignupWidgets/widgets/alreadyHaveAccount.dart';
+import '../loginAndSignupWidgets/widgets/custom_field.dart';
+import '../loginAndSignupWidgets/widgets/loginButton.dart';
+import '../loginAndSignupWidgets/widgets/loginWith.dart';
+import '../loginAndSignupWidgets/widgets/marketImage.dart';
+import '../loginAndSignupWidgets/widgets/orDivider.dart';
+import 'package:Wafrnalak/loginAndSignup/passwordField.dart';
+import '../loginAndSignupWidgets/widgets/welcomeMassage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

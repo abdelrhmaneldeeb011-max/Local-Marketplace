@@ -1,4 +1,4 @@
-import 'custom_field.dart';
+import 'package:Wafrnalak/loginAndSignupWidgets/widgets/custom_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class Passwordfield extends StatefulWidget {
     this.onTap,
   });
   final String text;
-  final String?  forgetPasswordText;
+  final String? forgetPasswordText;
   final VoidCallback? onTap;
 
   @override
