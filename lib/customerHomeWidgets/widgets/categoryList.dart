@@ -18,16 +18,15 @@ class _CategorylistState extends State<Categorylist> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         children: [
-          Button(
-            icon: const Icon(Icons.apps),
-            textButton: 'All'.tr(),
-            onTap: () {},
-            iconSize: 25,
-            iconColor: Colors.white,
-            backgroundColor: Colors.deepOrange,
-            textcolor: Colors.white,
-            textsize: 16,
-            shadowcolor: Colors.transparent,
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.deepOrange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            onPressed: () {},
+            child: Text('All'.tr(), style: TextStyle(color: Colors.white)),
           ),
           const SizedBox(width: 15),
           Button(

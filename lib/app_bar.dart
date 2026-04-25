@@ -11,23 +11,20 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      toolbarHeight: 90,
+      toolbarHeight: 70,
       centerTitle: true,
-      title: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(25),
-          child: Image.asset('assets/img/Wafrnalk_Logo.jpg', height: 60),
-        ),
+      title: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Image.asset('assets/img/Wafrnalk_Logo.jpg', height: 60),
       ),
       actions: [
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 27, right: 27),
+          padding: const EdgeInsets.only(top: 5, left: 20, right: 20),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(16),
             child: Container(
-              height: 42,
-              width: 42,
+              height: 40,
+              width: 40,
               color: Colors.black12,
               child: IconButton(
                 icon: const Icon(Icons.translate),
@@ -44,9 +41,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+      leadingWidth: 60,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(90);
+  Size get preferredSize => const Size.fromHeight(70);
 }

@@ -1,7 +1,7 @@
 // بسم الله الرحمن الرحيم //
 import '../app_bar.dart';
 import '../customerHomeWidgets/widgets/categoryList.dart';
-import '../customerHomeFooter.dart';
+import '../customerFooter.dart';
 import '../customerHomeWidgets/widgets/searchBar.dart';
 import '../customerHomeWidgets/widgets/shopsView.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -37,7 +37,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [Customerhomefooter()]);
+            return Column(children: [CustomerFooter()]);
           },
         ),
       ],
