@@ -1,9 +1,9 @@
 // بسم الله الرحمن الرحيم //
 import '../app_bar.dart';
-import '../widgets/categoryList.dart';
-import '../widgets/customerHomeFooter.dart';
-import '../widgets/searchBar.dart';
-import '../widgets/shopsView.dart';
+import '../customerHomeWidgets/widgets/categoryList.dart';
+import '../customerHomeFooter.dart';
+import '../customerHomeWidgets/widgets/searchBar.dart';
+import '../customerHomeWidgets/widgets/shopsView.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
