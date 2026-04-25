@@ -26,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final currentLocale = context.locale;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MyAppBar(),
       body: Center(
         child: ListView(

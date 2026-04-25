@@ -12,7 +12,6 @@ class Customerhomefooter extends StatefulWidget {
 class _CustomerhomefooterState extends State<Customerhomefooter> {
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.locale;
     return Builder(
       builder: (context) {
         return Row(

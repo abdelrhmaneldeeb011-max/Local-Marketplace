@@ -34,5 +34,11 @@
   "signupMassage1": "Create An Account",
   "signupMassage2": "Join us and start descovering local \n treasures",
   "Customer": "Customer",
-  "Seller": "Seller"
+  "Seller": "Seller",
+  "open": "Open",
+  "close": "Close",
+  "marketName": "Market Name",
+  "location": "Location",
+  "categoryName": "Category Name",
+  "description": "Description "
 }

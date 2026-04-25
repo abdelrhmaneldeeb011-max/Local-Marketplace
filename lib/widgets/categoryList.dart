@@ -12,12 +12,11 @@ class Categorylist extends StatefulWidget {
 class _CategorylistState extends State<Categorylist> {
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.locale;
     return SizedBox(
       height: 40,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         children: [
           Button(
             icon: const Icon(Icons.apps),

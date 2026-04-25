@@ -11,7 +11,7 @@ void main() async {
   runApp(
     EasyLocalization(
       // مسار ملفات الترجمة في مشروعك
-      path: 'assets/translations', 
+      path: 'assets/translations',
       // اللغات المدعومة (مثلاً العربية والإنجليزية)
       supportedLocales: const [Locale('ar'), Locale('en')],
       // اللغة الافتراضية
@@ -27,12 +27,13 @@ class Wafrnalak extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.white,
       debugShowCheckedModeBanner: false,
       // ربط إعدادات اللغة بالتطبيق
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      
+
       // شاشة البداية
       home: LoginScreen(),
     );

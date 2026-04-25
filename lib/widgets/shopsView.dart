@@ -1,3 +1,4 @@
+import 'package:Wafrnalak/widgets/shopsCard.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +15,11 @@ class _ShopsviewState extends State<Shopsview> {
     return Expanded(
       child: ListView(
         children: [
-          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   'Local Shops Near You'.tr(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -37,6 +37,9 @@ class _ShopsviewState extends State<Shopsview> {
               ),
             ],
           ),
+          const SizedBox(height: 5),
+          ShopsCard(),
+          ShopsCard(),
         ],
       ),
     );

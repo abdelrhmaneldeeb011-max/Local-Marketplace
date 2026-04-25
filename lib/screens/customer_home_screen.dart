@@ -21,13 +21,15 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     final currentLocale = context.locale;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MyAppBar(),
 
       body: Column(
         children: [
+          SizedBox(height: 10),
           MySearchBar(),
-          const SizedBox(height: 20),
           Categorylist(),
+          SizedBox(height: 5),
           Shopsview(),
         ],
       ),
