@@ -6,15 +6,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomerFooter extends StatefulWidget {
-  const CustomerFooter({super.key});
-
+  const CustomerFooter({super.key, required this.activeTabIndex});
+  final int activeTabIndex;
   @override
   State<CustomerFooter> createState() => _CustomerFooterState();
 }
 
 class _CustomerFooterState extends State<CustomerFooter> {
-  int activeTabIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -27,53 +25,64 @@ class _CustomerFooterState extends State<CustomerFooter> {
             Footerbuttons(
               icon: Icon(
                 Icons.home,
-                color: activeTabIndex == 0 ? Colors.deepOrange : Colors.grey,
+                color: widget.activeTabIndex == 0
+                    ? Colors.deepOrange
+                    : widget.activeTabIndex == 0
+                    ? Colors.deepOrange
+                    : Colors.grey,
               ),
               textButton: 'Home'.tr(),
-              color: activeTabIndex == 0 ? Colors.deepOrange : Colors.grey,
+              color: widget.activeTabIndex == 0
+                  ? Colors.deepOrange
+                  : Colors.grey,
               onTap: () {
                 setState(() {
-                  activeTabIndex = 0;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CustomerHomeScreen(),
+                    ),
+                  );
                 });
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CustomerHomeScreen(),
-                  ),
-                );
               },
             ),
             // Cart Button
             Footerbuttons(
               icon: Icon(
                 Icons.shopping_cart,
-                color: activeTabIndex == 1 ? Colors.deepOrange : Colors.grey,
+                color: widget.activeTabIndex == 1
+                    ? Colors.deepOrange
+                    : Colors.grey,
               ),
               textButton: 'Cart'.tr(),
-              color: activeTabIndex == 1 ? Colors.deepOrange : Colors.grey,
+              color: widget.activeTabIndex == 1
+                  ? Colors.deepOrange
+                  : Colors.grey,
               onTap: () {
                 setState(() {
-                  activeTabIndex = 1;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CustomerCartScreen(),
+                    ),
+                  );
                 });
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CustomerCartScreen(),
-                  ),
-                );
               },
             ),
             // Orders Button
             Footerbuttons(
               icon: Icon(
                 Icons.receipt_long,
-                color: activeTabIndex == 2 ? Colors.deepOrange : Colors.grey,
+                color: widget.activeTabIndex == 2
+                    ? Colors.deepOrange
+                    : Colors.grey,
               ),
               textButton: 'Orders'.tr(),
-              color: activeTabIndex == 2 ? Colors.deepOrange : Colors.grey,
+              color: widget.activeTabIndex == 2
+                  ? Colors.deepOrange
+                  : Colors.grey,
               onTap: () {
                 setState(() {
-                  activeTabIndex = 2;
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -87,13 +96,22 @@ class _CustomerFooterState extends State<CustomerFooter> {
             Footerbuttons(
               icon: Icon(
                 Icons.person,
-                color: activeTabIndex == 3 ? Colors.deepOrange : Colors.grey,
+                color: widget.activeTabIndex == 3
+                    ? Colors.deepOrange
+                    : Colors.grey,
               ),
               textButton: 'Profile'.tr(),
-              color: activeTabIndex == 3 ? Colors.deepOrange : Colors.grey,
+              color: widget.activeTabIndex == 3
+                  ? Colors.deepOrange
+                  : Colors.grey,
               onTap: () {
                 setState(() {
-                  activeTabIndex = 3;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CustomerHomeScreen(),
+                    ),
+                  );
                 });
               },
             ),
