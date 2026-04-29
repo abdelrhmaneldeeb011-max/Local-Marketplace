@@ -6,6 +6,11 @@ class CustomerCheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(backgroundColor: Colors.white, appBar: MyAppBar());
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: const MyAppBar(),
+      body: const Column(children: []),
+      
+    );
   }
 }
