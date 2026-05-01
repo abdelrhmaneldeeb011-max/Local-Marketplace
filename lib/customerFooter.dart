@@ -1,6 +1,7 @@
 import 'package:Wafrnalak/screens/customer_cart_screen.dart';
 import 'package:Wafrnalak/screens/customer_home_screen.dart';
 import 'package:Wafrnalak/screens/customer_orders_screen.dart';
+import 'package:Wafrnalak/screens/customer_profile_screen.dart';
 import 'widgets/footerButtons.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -109,7 +110,7 @@ class _CustomerFooterState extends State<CustomerFooter> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CustomerHomeScreen(),
+                      builder: (context) => const CustomerProfileScreen(),
                     ),
                   );
                 });

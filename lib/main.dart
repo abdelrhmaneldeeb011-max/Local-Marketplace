@@ -15,7 +15,7 @@ void main() async {
       // اللغات المدعومة (مثلاً العربية والإنجليزية)
       supportedLocales: const [Locale('ar'), Locale('en')],
       // اللغة الافتراضية
-      fallbackLocale: const Locale('ar'),
+      fallbackLocale: const Locale('en'),
       child: const Wafrnalak(),
     ),
   );

@@ -8,7 +8,7 @@ class CustomerCheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const MyAppBar(),
+      appBar: const MyAppBar( title: 'checkout',),
       body: const Column(children: []),
       
     );

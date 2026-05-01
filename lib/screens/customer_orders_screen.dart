@@ -16,7 +16,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'orders'),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
         child: Column(
@@ -49,86 +49,89 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
                   horizontal: 10,
                   vertical: 5,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'ORDER ID: 000000',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[400],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'ORDER ID: 000000',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[400],
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Container(
-                            color: Colors.deepOrange[100],
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 1,
-                              ),
-                              child: Text(
-                                'processing'.tr(),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.deepOrange,
+                          const Spacer(),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Container(
+                              color: Colors.deepOrange[100],
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 1,
+                                ),
+                                child: Text(
+                                  'processing'.tr(),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.deepOrange,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      'orderStatus'.tr(),
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                        ],
                       ),
-                    ),
-                    Text(
-                      'orderDate'.tr(),
-                      style: TextStyle(fontSize: 14, color: Colors.grey[500]),
-                    ),
-                    SizedBox(height: 14),
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            'assets/img/MarketPhoto.png',
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                          ),
+                      Text(
+                        'orderStatus'.tr(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 15),
+                      ),
+                      Text(
+                        'orderDate'.tr(),
+                        style: TextStyle(fontSize: 14, color: Colors.grey[500]),
+                      ),
+                      SizedBox(height: 14),
+                      Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              'assets/img/MarketPhoto.png',
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(width: 15),
 
-                        Text(
-                          '1item'.tr(),
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[500],
+                          Text(
+                            '1item'.tr(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[500],
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          '150 EGP'.tr(),
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                          const Spacer(),
+                          Text(
+                            '150 EGP'.tr(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

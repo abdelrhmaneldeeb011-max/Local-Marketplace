@@ -16,7 +16,7 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'cart'),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
         child: Column(

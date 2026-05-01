@@ -27,9 +27,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final currentLocale = context.locale;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'signup'),
       body: Center(
         child: ListView(
+          padding: const EdgeInsets.only(top: 30),
           children: [
             WelcomeMessage(text1: "signupMassage1", text2: "signupMassage2"),
             Marketimage(),

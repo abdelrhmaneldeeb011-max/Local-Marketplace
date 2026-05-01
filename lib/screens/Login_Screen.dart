@@ -26,11 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'login'),
       body: PopScope(
         child: SizedBox(
           width: double.infinity,
           child: ListView(
+            padding: const EdgeInsets.only(top: 30),
             children: [
               WelcomeMessage(
                 text1: "welcomeMessage1",
