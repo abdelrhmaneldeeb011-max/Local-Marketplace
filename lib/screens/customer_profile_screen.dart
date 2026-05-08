@@ -56,7 +56,7 @@ class CustomerProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
+                  backgroundColor: WidgetStateProperty.all<Color>(
                     Colors.deepOrange,
                   ),
                 ),

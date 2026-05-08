@@ -37,7 +37,7 @@ class CustomInputField extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              if (trailing != null) trailing!, // لو بعت زرار هيظهره هنا
+              ?trailing, // لو بعت زرار هيظهره هنا
             ],
           ),
           const SizedBox(height: 6),

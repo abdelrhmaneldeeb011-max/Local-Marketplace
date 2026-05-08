@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeMessage extends StatelessWidget {
-  const WelcomeMessage({Key? key, required this.text1, required this.text2});
+  const WelcomeMessage({super.key, Key? key, required this.text1, required this.text2});
   final String text1;
   final String text2;
   @override
@@ -20,7 +20,7 @@ class WelcomeMessage extends StatelessWidget {
           text2.tr(),
           style: const TextStyle(
             fontSize: 15,
-            color: const Color.fromARGB(255, 125, 125, 125),
+            color: Color.fromARGB(255, 125, 125, 125),
           ),
           textAlign: TextAlign.center,
         ),
