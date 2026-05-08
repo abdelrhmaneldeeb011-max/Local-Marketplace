@@ -21,7 +21,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  // Controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -29,12 +28,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
 
   final AuthService _authService = AuthService();
-
   bool _isLoading = false;
 
-  // 🔥 function التسجيل
   Future<void> register() async {
-    if (_emailController.text.isEmpty ||
+    // ✅ التحقق من الحقول الفاضية
+    if (_nameController.text.trim().isEmpty ||
+        _emailController.text.trim().isEmpty ||
         _passwordController.text.isEmpty ||
         _confirmPasswordController.text.isEmpty) {
       if (context.mounted) {
@@ -45,6 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
+    // ✅ التحقق من تطابق الباسورد
     if (_passwordController.text != _confirmPasswordController.text) {
       if (context.mounted) {
         ScaffoldMessenger.of(
@@ -62,29 +62,75 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final user = await _authService.register(
         _emailController.text.trim(),
         _passwordController.text.trim(),
+        _nameController.text.trim(), // ✅ بنبعت الاسم
       );
 
       if (context.mounted) {
         setState(() => _isLoading = false);
 
         if (user != null) {
-          // ✅ رسالة نجاح
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Create account successful").tr()),
+          // ✅ Dialog يقول للمستخدم يفتح إيميله
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: const Row(
+                children: [
+                  Text('📧 '),
+                  Text(
+                    'تحقق من إيميلك',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              content: Text(
+                'اتبعت إيميل تأكيد على:\n${user.email}\n\nافتحه وفعّل حسابك الأول عشان تقدر تسجّل دخول.',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, height: 1.6),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // ✅ اقفل الـ Dialog
+                    Navigator.pushReplacementNamed(context, '/login');
+                  },
+                  child: const Text(
+                    'روح لتسجيل الدخول',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
           );
-          // ✅ بعد النجاح المستخدم يضغط على Login للانتقال
-        } else {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text("Signup failed").tr()));
         }
       }
+
+      // ✅ AuthException — رسائل عربية واضحة من auth_service
+    } on AuthException catch (e) {
+      if (context.mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.message),
+            backgroundColor: Colors.red.shade700,
+            duration: const Duration(seconds: 4),
+          ),
+        );
+      }
+
+      // ✅ أي خطأ تاني غير متوقع
     } catch (e) {
       if (context.mounted) {
         setState(() => _isLoading = false);
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("Error: $e").tr()));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('حصل خطأ غير متوقع، حاول تاني.'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }
@@ -111,10 +157,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 20),
             const Role(),
-
             const SizedBox(height: 20),
 
-            // Name
+            // ✅ Name Field
             CustomInputField(
               controller: _nameController,
               label: 'fullName'.tr(),
@@ -124,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 10),
 
-            // Email
+            // ✅ Email Field
             CustomInputField(
               controller: _emailController,
               label: 'email'.tr(),
@@ -134,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 10),
 
-            // Password
+            // ✅ Password Field
             Passwordfield(
               controller: _passwordController,
               text: 'password',
@@ -143,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 10),
 
-            // Confirm Password
+            // ✅ Confirm Password Field
             Passwordfield(
               controller: _confirmPasswordController,
               text: 'confirmPassword',
@@ -152,7 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 25),
 
-            // Button
+            // ✅ زرار Signup مع Loading
             _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : Loginbutton(text: Text('signup'.tr()), onPressed: register),
@@ -162,7 +207,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 15),
             const Loginwith(),
 
-            // ✅ زرار Login بعد إنشاء الحساب
+            // ✅ الانتقال لصفحة Login
             Alreadyhaveaccount(
               text1: 'alreadyHaveAccount',
               text2: 'login',

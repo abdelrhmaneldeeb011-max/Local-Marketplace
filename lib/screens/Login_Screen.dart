@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   Future<void> _login() async {
+    // ✅ التحقق من الحقول الفاضية
     if (_emailController.text.trim().isEmpty ||
         _passwordController.text.trim().isEmpty) {
       if (context.mounted) {
@@ -52,24 +53,37 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (user != null) {
           // ✅ رسالة نجاح
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Login successful').tr()));
-
-          // ✅ التوجيه مباشرة للـ CustomerHomeScreen
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login successful').tr()),
+          );
+          // ✅ التوجيه للـ Home
           Navigator.pushReplacementNamed(context, '/home');
-        } else {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Login failed').tr()));
         }
       }
+
+      // ✅ AuthException — رسائل عربية واضحة من auth_service
+    } on AuthException catch (e) {
+      if (context.mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.message),
+            backgroundColor: Colors.red.shade700,
+            duration: const Duration(seconds: 4),
+          ),
+        );
+      }
+
+      // ✅ أي خطأ تاني غير متوقع
     } catch (e) {
       if (context.mounted) {
         setState(() => _isLoading = false);
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error: $e').tr()));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('حصل خطأ غير متوقع، حاول تاني.'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }
@@ -95,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Marketimage(),
             const SizedBox(height: 20),
 
-            // Email
+            // ✅ Email Field
             CustomInputField(
               controller: _emailController,
               label: 'email'.tr(),
@@ -105,17 +119,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 10),
 
-            // Password
+            // ✅ Password Field مع Forgot Password
             Passwordfield(
               controller: _passwordController,
               text: 'password'.tr(),
               forgetPasswordText: 'forgotPassword'.tr(),
-              onTap: () {},
+              // ✅ ربط زرار Forgot Password بالصفحة
+              onTap: () {
+                Navigator.pushNamed(context, '/forgot-password');
+              },
             ),
 
             const SizedBox(height: 25),
 
-            // Button
+            // ✅ زرار Login مع Loading
             _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : Loginbutton(text: Text('login'.tr()), onPressed: _login),
@@ -125,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 15),
             const Loginwith(),
 
-            // ✅ زرار Signup يوديك على صفحة التسجيل
+            // ✅ الانتقال لصفحة Signup
             Alreadyhaveaccount(
               text1: 'noAccount',
               text2: 'signup',

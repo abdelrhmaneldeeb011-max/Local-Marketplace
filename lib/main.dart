@@ -1,14 +1,14 @@
 // بسم الله الرحمن الرحيم //
 import 'screens/Login_Screen.dart';
 import 'screens/signUp_screen.dart';
-import 'screens/customer_home_screen.dart'; // ✅ استدعاء صفحة الـ Home
+import 'screens/customer_home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  // التأكد من تهيئة الـ Widgets قبل بدء التطبيق
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -29,21 +29,41 @@ class Wafrnalak extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.white,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
 
-      // ✅ تعريف الـ routes
-      initialRoute: '/login',
+      // ✅ Routes
       routes: {
         '/login': (context) => const LoginScreen(),
-        '/signup': (context) =>
-            const SignUpScreen(), // ✅ التنقل من Login → Signup
-        '/home': (context) =>
-            const CustomerHomeScreen(), // ✅ التنقل للـ Home بعد تسجيل الدخول
+        '/signup': (context) => const SignUpScreen(),
+        '/home': (context) => const CustomerHomeScreen(),
       },
+
+      // ✅ Auth Gate — بيشوف حالة المستخدم أول ما الـ app يفتح
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          // لسه بيحمّل
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+
+          // ✅ متسجل دخول وإيميله متفعّل → روح للـ Home
+          if (snapshot.hasData && snapshot.data!.emailVerified) {
+            return const CustomerHomeScreen();
+          }
+
+          // ✅ مش متسجل أو إيميله مش متفعّل → روح للـ Login
+          return const LoginScreen();
+        },
+      ),
     );
   }
 }
