@@ -11,7 +11,7 @@ class CustomerProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'profile'),
+      appBar: MyAppBar(   title: 'profile'),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
         child: ListView(
