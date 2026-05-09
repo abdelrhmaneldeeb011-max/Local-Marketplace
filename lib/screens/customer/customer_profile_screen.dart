@@ -1,6 +1,10 @@
 import 'package:wafrnalak/app_bar.dart';
 import 'package:wafrnalak/customerFooter.dart';
+<<<<<<< HEAD:lib/screens/customer/customer_profile_screen.dart
 import 'package:wafrnalak/screens/auth/Login_Screen.dart';
+=======
+import 'package:wafrnalak/screens/Login_Screen.dart';
+>>>>>>> 7158d147d2ca2a26a975c4d42be9d2a12de527a9:lib/screens/customer_profile_screen.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -297,7 +301,11 @@ class CustomerProfileScreen extends StatelessWidget {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
+<<<<<<< HEAD:lib/screens/customer/customer_profile_screen.dart
             return Column(children: [CustomerFooter(activeTabIndex: 3, userType: 'customer',)]);
+=======
+            return Column(children: [CustomerFooter(activeTabIndex: 3)]);
+>>>>>>> 7158d147d2ca2a26a975c4d42be9d2a12de527a9:lib/screens/customer_profile_screen.dart
           },
         ),
       ],

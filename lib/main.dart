@@ -10,9 +10,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   // ✅ تهيئة Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
     EasyLocalization(
