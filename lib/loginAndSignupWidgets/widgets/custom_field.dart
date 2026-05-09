@@ -7,7 +7,8 @@ class CustomInputField extends StatelessWidget {
   final IconData icon;
   final bool isPassword;
   final Widget? suffixIcon;
-  final Widget? trailing; // <--- الزرار اللي فوق الـ TextField
+  final Widget? trailing;
+  final TextEditingController? controller;
 
   const CustomInputField({
     super.key,
@@ -16,7 +17,8 @@ class CustomInputField extends StatelessWidget {
     required this.icon,
     this.isPassword = false,
     this.suffixIcon,
-    this.trailing, // اختياري
+    this.trailing,
+    this.controller,
   });
 
   @override
@@ -26,7 +28,6 @@ class CustomInputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // السطر اللي فيه العنوان وزرار "نسيت كلمة المرور"
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -37,11 +38,12 @@ class CustomInputField extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              trailing ?? const SizedBox.shrink(), // لو بعت زرار هيظهره هنا
+              trailing ?? const SizedBox.shrink(),
             ],
           ),
           const SizedBox(height: 6),
           TextField(
+            controller: controller,
             autofocus: false,
             obscureText: isPassword,
             decoration: InputDecoration(

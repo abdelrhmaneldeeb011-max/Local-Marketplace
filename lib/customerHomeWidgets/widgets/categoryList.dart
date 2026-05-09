@@ -26,12 +26,12 @@ class _CategorylistState extends State<Categorylist> {
               ),
             ),
             onPressed: () {},
-            child: Text('All'.tr(), style: TextStyle(color: Colors.white)),
+            child: Text('All'.tr(), style: const TextStyle(color: Colors.white)),
           ),
           const SizedBox(width: 15),
           Button(
             icon: const Icon(Icons.shopping_basket),
-            textButton: 'Grocery'.tr(),
+            textButton: Text('Grocery'.tr(), style: TextStyle(color: Colors.deepOrange, fontSize: 14)), // ✅
             onTap: () {},
             iconSize: 20,
             iconColor: Colors.deepOrange,
@@ -43,7 +43,7 @@ class _CategorylistState extends State<Categorylist> {
           const SizedBox(width: 15),
           Button(
             icon: const Icon(Icons.bakery_dining),
-            textButton: 'Bakery'.tr(),
+            textButton: Text('Bakery'.tr(), style: TextStyle(color: Colors.deepOrange, fontSize: 14)), // ✅
             onTap: () {},
             iconSize: 25,
             iconColor: Colors.deepOrange,
@@ -55,7 +55,7 @@ class _CategorylistState extends State<Categorylist> {
           const SizedBox(width: 15),
           Button(
             icon: const Icon(Icons.devices),
-            textButton: 'Electronics'.tr(),
+            textButton: Text('Electronics'.tr(), style: TextStyle(color: Colors.deepOrange, fontSize: 14)), // ✅
             onTap: () {},
             iconSize: 20,
             iconColor: Colors.deepOrange,
@@ -67,7 +67,7 @@ class _CategorylistState extends State<Categorylist> {
           const SizedBox(width: 15),
           Button(
             icon: const Icon(Icons.dry_cleaning),
-            textButton: 'Fashion'.tr(),
+            textButton: Text('Fashion'.tr(), style: TextStyle(color: Colors.deepOrange, fontSize: 14)), // ✅
             onTap: () {},
             iconSize: 22,
             iconColor: Colors.deepOrange,
@@ -79,7 +79,7 @@ class _CategorylistState extends State<Categorylist> {
           const SizedBox(width: 15),
           Button(
             icon: const Icon(Icons.local_hospital),
-            textButton: 'Health'.tr(),
+            textButton: Text('Health'.tr(), style: TextStyle(color: Colors.deepOrange, fontSize: 14)), // ✅
             onTap: () {},
             iconSize: 20,
             iconColor: Colors.deepOrange,

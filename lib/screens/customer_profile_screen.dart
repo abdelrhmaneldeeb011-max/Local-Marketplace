@@ -297,7 +297,7 @@ class CustomerProfileScreen extends StatelessWidget {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return const Column(children: [CustomerFooter(activeTabIndex: 3)]);
+            return Column(children: [CustomerFooter(activeTabIndex: 3)]);
           },
         ),
       ],

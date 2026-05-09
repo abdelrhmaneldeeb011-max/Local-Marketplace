@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class Button extends StatelessWidget {
   const Button({
     super.key,
@@ -14,15 +13,17 @@ class Button extends StatelessWidget {
     required this.textsize,
     required this.shadowcolor,
   });
+
   final Icon icon;
   final double iconSize;
   final Color iconColor;
   final Color backgroundColor;
-  final String textButton;
+  final Widget textButton;
   final Color textcolor;
   final double textsize;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Color shadowcolor;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
@@ -33,14 +34,8 @@ class Button extends StatelessWidget {
         elevation: 3,
         shadowColor: shadowcolor,
       ),
-
       icon: Icon(icon.icon, size: iconSize, color: iconColor),
-      label: Builder(
-        builder: (context) => Text(
-          textButton,
-          style: TextStyle(color: textcolor, fontSize: textsize),
-        ),
-      ),
+      label: textButton,
     );
   }
 }

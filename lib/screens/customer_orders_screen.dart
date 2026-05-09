@@ -152,7 +152,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return const Column(children: [CustomerFooter(activeTabIndex: 2)]);
+            return Column(children: [CustomerFooter(activeTabIndex: 2)]);
           },
         ),
       ],
