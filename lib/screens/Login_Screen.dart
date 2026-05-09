@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar(title: 'login'),
+      appBar: const MyAppBar(),
       body: PopScope(
         child: SizedBox(
           width: double.infinity,
@@ -46,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               Passwordfield(
-                text: 'password'.tr(),
-                forgetPasswordText: 'forgotPassword'.tr(),
+                text: 'password',
+                forgetPasswordText: 'forgotPassword',
                 onTap: () {},
               ),
               SizedBox(height: 25),

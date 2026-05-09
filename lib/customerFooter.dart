@@ -1,7 +1,7 @@
-import 'package:Wafrnalak/screens/customer_cart_screen.dart';
-import 'package:Wafrnalak/screens/customer_home_screen.dart';
-import 'package:Wafrnalak/screens/customer_orders_screen.dart';
-import 'package:Wafrnalak/screens/customer_profile_screen.dart';
+import 'package:wafrnalak/screens/customer_cart_screen.dart';
+import 'package:wafrnalak/screens/customer_home_screen.dart';
+import 'package:wafrnalak/screens/customer_orders_screen.dart';
+import 'package:wafrnalak/screens/customer_profile_screen.dart';
 import 'widgets/footerButtons.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,22 +16,12 @@ class CustomerFooter extends StatefulWidget {
 class _CustomerFooterState extends State<CustomerFooter> {
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        final currentLocale = context.locale;
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // Home Button
-            Footerbuttons(
-              icon: Icon(
-                Icons.home,
-                color: widget.activeTabIndex == 0
-                    ? Colors.deepOrange
-                    : widget.activeTabIndex == 0
-                    ? Colors.deepOrange
-                    : Colors.grey,
-              ),
+    return Row(
+      children: [
+        Expanded(
+          child: Center(
+            child: Footerbuttons(
+              icon: const Icon(Icons.home),
               textButton: 'Home'.tr(),
               color: widget.activeTabIndex == 0
                   ? Colors.deepOrange
@@ -47,14 +37,12 @@ class _CustomerFooterState extends State<CustomerFooter> {
                 });
               },
             ),
-            // Cart Button
-            Footerbuttons(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: widget.activeTabIndex == 1
-                    ? Colors.deepOrange
-                    : Colors.grey,
-              ),
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Footerbuttons(
+              icon: const Icon(Icons.shopping_cart),
               textButton: 'Cart'.tr(),
               color: widget.activeTabIndex == 1
                   ? Colors.deepOrange
@@ -70,14 +58,12 @@ class _CustomerFooterState extends State<CustomerFooter> {
                 });
               },
             ),
-            // Orders Button
-            Footerbuttons(
-              icon: Icon(
-                Icons.receipt_long,
-                color: widget.activeTabIndex == 2
-                    ? Colors.deepOrange
-                    : Colors.grey,
-              ),
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Footerbuttons(
+              icon: const Icon(Icons.receipt_long),
               textButton: 'Orders'.tr(),
               color: widget.activeTabIndex == 2
                   ? Colors.deepOrange
@@ -93,14 +79,12 @@ class _CustomerFooterState extends State<CustomerFooter> {
                 });
               },
             ),
-            // Profile Button
-            Footerbuttons(
-              icon: Icon(
-                Icons.person,
-                color: widget.activeTabIndex == 3
-                    ? Colors.deepOrange
-                    : Colors.grey,
-              ),
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Footerbuttons(
+              icon: const Icon(Icons.person),
               textButton: 'Profile'.tr(),
               color: widget.activeTabIndex == 3
                   ? Colors.deepOrange
@@ -116,9 +100,9 @@ class _CustomerFooterState extends State<CustomerFooter> {
                 });
               },
             ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -9,11 +9,16 @@ class OrdersButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(100),
       child: Container(
-        height: 22,
+        constraints: const BoxConstraints(minHeight: 28),
         color: Colors.deepOrange[400],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(text, style: TextStyle(color: Colors.white)),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Center(
+          child: Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: Colors.white, fontSize: 12),
+          ),
         ),
       ),
     );

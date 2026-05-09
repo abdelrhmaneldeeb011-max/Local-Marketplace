@@ -1,4 +1,4 @@
-                    // بسم الله الرحمن الرحيم //
+// بسم الله الرحمن الرحيم //
 import 'package:flutter/material.dart';
 
 class CustomInputField extends StatelessWidget {
@@ -37,7 +37,7 @@ class CustomInputField extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              if (trailing != null) trailing!, // لو بعت زرار هيظهره هنا
+              trailing ?? const SizedBox.shrink(), // لو بعت زرار هيظهره هنا
             ],
           ),
           const SizedBox(height: 6),

@@ -1,6 +1,6 @@
-import 'package:Wafrnalak/app_bar.dart';
-import 'package:Wafrnalak/customerFooter.dart';
-import 'package:Wafrnalak/widgets/ordersButton.dart';
+import 'package:wafrnalak/app_bar.dart';
+import 'package:wafrnalak/customerFooter.dart';
+import 'package:wafrnalak/widgets/ordersButton.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +16,10 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'orders'),
+      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               'Your Orders'.tr(),
@@ -31,14 +30,19 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
               style: TextStyle(fontSize: 12, color: Colors.grey[500]),
             ),
             const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OrdersButton(text: 'All Orders'.tr()),
-                OrdersButton(text: 'Active'.tr()),
-                OrdersButton(text: 'Completed'.tr()),
-                OrdersButton(text: 'Cancelled'.tr()),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  OrdersButton(text: 'All Orders'.tr()),
+                  const SizedBox(width: 8),
+                  OrdersButton(text: 'Active'.tr()),
+                  const SizedBox(width: 8),
+                  OrdersButton(text: 'Completed'.tr()),
+                  const SizedBox(width: 8),
+                  OrdersButton(text: 'Cancelled'.tr()),
+                ],
+              ),
             ),
             const SizedBox(height: 25),
             ClipRRect(
@@ -56,14 +60,17 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            'ORDER ID: 000000',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey[400],
+                          Expanded(
+                            child: Text(
+                              'ORDER ID: 000000',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[400],
+                              ),
                             ),
                           ),
-                          const Spacer(),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: Container(
@@ -111,15 +118,19 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
                           ),
                           const SizedBox(width: 15),
 
-                          Text(
-                            '1item'.tr(),
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[500],
+                          Expanded(
+                            child: Text(
+                              '1item'.tr(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[500],
+                              ),
                             ),
                           ),
-                          const Spacer(),
+                          const SizedBox(width: 8),
                           Text(
                             '150 EGP'.tr(),
                             style: TextStyle(

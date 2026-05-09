@@ -1,6 +1,5 @@
-
-import 'package:Wafrnalak/screens/customer_checkout_screen.dart';
-import 'package:Wafrnalak/widgets/longButton.dart';
+import 'package:wafrnalak/screens/customer_checkout_screen.dart';
+import 'package:wafrnalak/widgets/longButton.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutView extends StatelessWidget {

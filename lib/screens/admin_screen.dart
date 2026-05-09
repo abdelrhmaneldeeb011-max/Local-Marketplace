@@ -80,7 +80,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   ),
                 ),
               );
-            }).toList(),
+            }),
 
             const SizedBox(height: 25),
 
@@ -137,7 +137,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   ),
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

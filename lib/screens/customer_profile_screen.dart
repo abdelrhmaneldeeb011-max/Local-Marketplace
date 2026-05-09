@@ -1,6 +1,6 @@
-import 'package:Wafrnalak/app_bar.dart';
-import 'package:Wafrnalak/customerFooter.dart';
-import 'package:Wafrnalak/screens/Login_screen.dart';
+import 'package:wafrnalak/app_bar.dart';
+import 'package:wafrnalak/customerFooter.dart';
+import 'package:wafrnalak/screens/Login_Screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class CustomerProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(   title: 'profile'),
+      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
         child: ListView(
@@ -19,8 +19,8 @@ class CustomerProfileScreen extends StatelessWidget {
             Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(34)),
-                  child: Image(
+                  borderRadius: const BorderRadius.all(Radius.circular(34)),
+                  child: const Image(
                     image: AssetImage('assets/img/MarketPhoto.png'),
                     height: 130,
                     width: 130,
@@ -28,42 +28,50 @@ class CustomerProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Colors.black,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'name',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'email@mail.com',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.black,
+                      Text(
+                        'email@mail.com',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
-              child: TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Colors.deepOrange,
+            Align(
+              child: SizedBox(
+                width: 180,
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all<Color>(
+                      Colors.deepOrange,
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Edit Profile',
-                  style: TextStyle(color: Colors.white),
+                  onPressed: () {},
+                  child: const Text(
+                    'Edit Profile',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -117,7 +125,7 @@ class CustomerProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 25),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
@@ -132,6 +140,8 @@ class CustomerProfileScreen extends StatelessWidget {
                           children: [
                             Text(
                               'TOTAL SAVINGS',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -196,7 +206,7 @@ class CustomerProfileScreen extends StatelessWidget {
                   },
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // 🟤 My Cart
                 ListTile(
@@ -217,7 +227,7 @@ class CustomerProfileScreen extends StatelessWidget {
                     // افتح صفحة الطلبات
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // 🌍 Change Language
                 ListTile(
                   leading: Container(
@@ -228,7 +238,11 @@ class CustomerProfileScreen extends StatelessWidget {
                     ),
                     child: Icon(Icons.language, color: Colors.brown),
                   ),
-                  title: Text("Change Language to language".tr()),
+                  title: Text(
+                    "Change Language to language".tr(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   onTap: () {
                     if (context.locale.languageCode == 'en') {
                       context.setLocale(Locale('ar'));
@@ -238,7 +252,7 @@ class CustomerProfileScreen extends StatelessWidget {
                   },
                 ),
 
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // 🔴 Logout
                 Container(
@@ -265,9 +279,12 @@ class CustomerProfileScreen extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                        (route) => false,
                       );
                     },
                   ),

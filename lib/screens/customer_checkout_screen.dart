@@ -1,4 +1,4 @@
-import 'package:Wafrnalak/screens/Customer_checkout_confirmed_screen.dart';
+import 'package:wafrnalak/screens/customer_checkout_confirmed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -117,20 +117,34 @@ class _CustomerCheckoutScreenState extends State<CustomerCheckoutScreen> {
           buildSectionTitle("payment_method".tr()),
           const SizedBox(height: 12),
 
-          buildPaymentCard(
-            icon: Icons.credit_card,
-            title: "VISA",
-            subtitle: "•••• 4242\nExpires 12/26",
-            value: 0,
-          ),
+          RadioGroup<int>(
+            groupValue: selectedPayment,
+            onChanged: (value) {
+              setState(() {
+                if (value != null) {
+                  selectedPayment = value;
+                }
+              });
+            },
+            child: Column(
+              children: [
+                buildPaymentCard(
+                  icon: Icons.credit_card,
+                  title: "VISA",
+                  subtitle: "•••• 4242\nExpires 12/26",
+                  value: 0,
+                ),
 
-          const SizedBox(height: 12),
+                const SizedBox(height: 12),
 
-          buildPaymentCard(
-            icon: Icons.phone_iphone,
-            title: "Vodafone Cash",
-            subtitle: "",
-            value: 1,
+                buildPaymentCard(
+                  icon: Icons.phone_iphone,
+                  title: "Vodafone Cash",
+                  subtitle: "",
+                  value: 1,
+                ),
+              ],
+            ),
           ),
 
           const SizedBox(height: 25),
@@ -260,16 +274,7 @@ class _CustomerCheckoutScreenState extends State<CustomerCheckoutScreen> {
             ),
           ),
 
-          Radio<int>(
-            value: value,
-            groupValue: selectedPayment,
-            activeColor: Colors.deepOrange,
-            onChanged: (val) {
-              setState(() {
-                selectedPayment = val!;
-              });
-            },
-          ),
+          Radio<int>(value: value, activeColor: Colors.deepOrange),
         ],
       ),
     );

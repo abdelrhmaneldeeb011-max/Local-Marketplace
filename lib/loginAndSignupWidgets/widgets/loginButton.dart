@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Loginbutton extends StatefulWidget {
   const Loginbutton({super.key, required this.text});
-  final Text text ;
+  final Text text;
 
   @override
   State<Loginbutton> createState() => _LoginbuttonState();
@@ -13,16 +13,17 @@ class Loginbutton extends StatefulWidget {
 class _LoginbuttonState extends State<Loginbutton> {
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: Button(
         icon: Icon(Icons.arrow_forward),
         textButton: widget.text.data!,
         onTap: () {
           FocusScope.of(context).unfocus();
-          Navigator.push(
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const CustomerHomeScreen()),
+            (route) => false,
           );
         },
         iconSize: 20,

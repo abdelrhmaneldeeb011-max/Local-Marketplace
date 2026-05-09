@@ -1,9 +1,9 @@
-import 'package:Wafrnalak/loginAndSignupWidgets/widgets/custom_field.dart';
+import 'package:wafrnalak/loginAndSignupWidgets/widgets/custom_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Passwordfield extends StatefulWidget {
-  Passwordfield({
+  const Passwordfield({
     super.key,
     required this.text,
     this.forgetPasswordText,

@@ -1,6 +1,6 @@
 // بسم الله الرحمن الرحيم //
 import '../app_bar.dart';
-import 'Login_screen.dart';
+import 'Login_Screen.dart';
 import '../loginAndSignupWidgets/widgets/alreadyHaveAccount.dart';
 import '../loginAndSignupWidgets/widgets/custom_field.dart';
 import '../loginAndSignupWidgets/widgets/loginButton.dart';
@@ -14,8 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
-  // ignore: use_key_in_widget_constructors
-  const SignUpScreen({Key? key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -27,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final currentLocale = context.locale;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar( title: 'signup'),
+      appBar: const MyAppBar(),
       body: Center(
         child: ListView(
           padding: const EdgeInsets.only(top: 30),

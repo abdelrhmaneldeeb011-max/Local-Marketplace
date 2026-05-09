@@ -7,7 +7,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 25),
-      child: Container(
+      child: SizedBox(
         height: 100,
         child: Row(
           children: [
