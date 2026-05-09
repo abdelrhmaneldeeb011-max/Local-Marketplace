@@ -40,5 +40,11 @@
   "marketName": "اسم المتجر",
   "location": "الموقع",
   "categoryName": "اسم الفئة",
-  "description": "الوصف"
+  "description": "الوصف",
+  "admin_panel": "لوحة تحكم الأدمن",
+  "manage_stores": "إدارة المطاعم",
+  "manage_users": "إدارة المستخدمين",
+  "owner": "المالك",
+  "block": "حظر",
+  "unblock": "فك الحظر"
 }

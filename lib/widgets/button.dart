@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Button extends StatelessWidget {
-  const Button({
+  Button({
     super.key,
     required this.icon,
     required this.iconSize,

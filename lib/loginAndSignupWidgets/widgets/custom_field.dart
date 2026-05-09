@@ -7,8 +7,7 @@ class CustomInputField extends StatelessWidget {
   final IconData icon;
   final bool isPassword;
   final Widget? suffixIcon;
-  final Widget? trailing;
-  final TextEditingController? controller;
+  final Widget? trailing; // <--- الزرار اللي فوق الـ TextField
 
   const CustomInputField({
     super.key,
@@ -17,8 +16,7 @@ class CustomInputField extends StatelessWidget {
     required this.icon,
     this.isPassword = false,
     this.suffixIcon,
-    this.trailing,
-    this.controller,
+    this.trailing, // اختياري
   });
 
   @override
@@ -39,12 +37,11 @@ class CustomInputField extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ?trailing, // لو بعت زرار هيظهره هنا
+              if (trailing != null) trailing!, // لو بعت زرار هيظهره هنا
             ],
           ),
           const SizedBox(height: 6),
           TextField(
-            controller: controller,
             autofocus: false,
             obscureText: isPassword,
             decoration: InputDecoration(
