@@ -40,11 +40,5 @@
   "marketName": "Market Name",
   "location": "Location",
   "categoryName": "Category Name",
-  "description": "Description ",
-  "admin_panel": "Admin Panel",
-  "manage_stores": "Manage Stores",
-  "manage_users": "Manage Users",
-  "owner": "Owner",
-  "block": "Block",
-  "unblock": "Unblock"
+  "description": "Description "
 }

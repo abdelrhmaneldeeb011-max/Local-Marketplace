@@ -22,7 +22,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'Wafrnalak'),
+      appBar: MyAppBar(),
 
       body: Column(
         children: [
