@@ -20,8 +20,14 @@ class Footerbuttons extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon.icon, color: color),
-          Text(textButton, style: TextStyle(color: color)),
+          Icon(icon.icon, color: color, size: 20),
+          const SizedBox(height: 2),
+          Text(
+            textButton,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: color, fontSize: 12),
+          ),
         ],
       ),
     );

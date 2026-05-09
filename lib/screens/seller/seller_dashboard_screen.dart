@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wafrnalak/customerFooter.dart';
 
 class SellerDashboardScreen extends StatelessWidget {
   const SellerDashboardScreen({super.key});
@@ -17,36 +18,12 @@ class SellerDashboardScreen extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         elevation: 6,
         onPressed: () {},
-        child: Icon(Icons.add, color: Colors.white, size: s(20)),
-      ),
-
-      /// BOTTOM NAVIGATION
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.deepOrange,
-        unselectedItemColor: Colors.grey,
-        currentIndex: 0,
-        elevation: 10,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_customize),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.inventory_2_outlined),
-            label: 'Products',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
+        child: const Icon(Icons.add, color: Colors.white),
       ),
 
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(s(18)),
+          padding: const EdgeInsets.all(18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,55 +31,54 @@ class SellerDashboardScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Wofrnhalk",
                         style: TextStyle(
-                          fontSize: s(28),
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepOrange,
                         ),
                       ),
 
-                      SizedBox(height: s(6)),
+                      SizedBox(height: 6),
 
                       Text(
                         "Welcome back, Atelier Studio",
-                        style: TextStyle(color: Colors.grey, fontSize: s(14)),
+                        style: TextStyle(color: Colors.grey, fontSize: 15),
                       ),
                     ],
                   ),
 
                   Container(
-                    padding: EdgeInsets.all(s(12)),
+                    padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: Colors.orange.shade50,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.storefront_outlined,
                       color: Colors.deepOrange,
-                      size: s(22),
                     ),
                   ),
                 ],
               ),
 
-              SizedBox(height: s(20)),
+              const SizedBox(height: 10),
 
               /// TITLE
-              Text(
+              const Text(
                 "Dashboard",
                 style: TextStyle(
-                  fontSize: s(24),
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                 ),
               ),
 
-              SizedBox(height: s(16)),
+              const SizedBox(height: 10),
 
               /// TOP CARDS
               Row(
@@ -118,7 +94,7 @@ class SellerDashboardScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(width: s(12)),
+                  const SizedBox(width: 14),
 
                   /// INVENTORY
                   Expanded(
@@ -133,11 +109,14 @@ class SellerDashboardScreen extends StatelessWidget {
                 ],
               ),
 
-              SizedBox(height: s(14)),
+              const SizedBox(height: 18),
 
               /// NEW ORDERS CARD
               Container(
-                padding: EdgeInsets.all(s(16)),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -145,26 +124,26 @@ class SellerDashboardScreen extends StatelessWidget {
                       Colors.deepOrange.shade700,
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(28),
                 ),
                 child: Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(s(12)),
+                      padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(.15),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.shopping_bag_outlined,
                         color: Colors.white,
-                        size: s(28),
+                        size: 34,
                       ),
                     ),
 
-                    SizedBox(width: s(12)),
+                    const SizedBox(width: 18),
 
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -173,26 +152,21 @@ class SellerDashboardScreen extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.white70,
                               letterSpacing: 1.2,
-                              fontSize: s(12),
                             ),
                           ),
-
-                          SizedBox(height: s(6)),
 
                           Text(
                             "18",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: s(34),
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
 
-                          SizedBox(height: s(6)),
-
                           Text(
                             "Pending Fulfillment",
-                            style: TextStyle(color: Colors.white70, fontSize: s(12)),
+                            style: TextStyle(color: Colors.white70),
                           ),
                         ],
                       ),
@@ -202,34 +176,34 @@ class SellerDashboardScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.deepOrange,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: s(14),
-                          vertical: s(10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 14,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Add Product",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: s(12)),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
               ),
 
-              SizedBox(height: s(20)),
+              const SizedBox(height: 8),
 
               /// RECENT PRODUCTS HEADER
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Recent Products",
                     style: TextStyle(
-                      fontSize: s(18),
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
@@ -237,24 +211,23 @@ class SellerDashboardScreen extends StatelessWidget {
 
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "View All",
                       style: TextStyle(
                         color: Colors.deepOrange,
                         fontWeight: FontWeight.bold,
-                        fontSize: s(14),
                       ),
                     ),
                   ),
                 ],
               ),
 
-              SizedBox(height: s(14)),
+              const SizedBox(height: 8),
 
               /// PRODUCTS LIST
               Expanded(
                 child: ListView(
-                  children: [
+                  children: const [
                     ProductCard(
                       title: "Minimalist Ceramic Timepiece",
                       price: "\$245.00",
@@ -263,7 +236,7 @@ class SellerDashboardScreen extends StatelessWidget {
                       statusColor: Colors.green,
                     ),
 
-                    SizedBox(height: s(12)),
+                    SizedBox(height: 16),
 
                     ProductCard(
                       title: "Studio Series Headphones",
@@ -273,7 +246,7 @@ class SellerDashboardScreen extends StatelessWidget {
                       statusColor: Colors.orange,
                     ),
 
-                    SizedBox(height: s(12)),
+                    SizedBox(height: 16),
 
                     ProductCard(
                       title: "Performance Trainer Red",
@@ -289,6 +262,15 @@ class SellerDashboardScreen extends StatelessWidget {
           ),
         ),
       ),
+      persistentFooterButtons: [
+        Builder(
+          builder: (context) {
+            return Column(
+              children: [CustomerFooter(activeTabIndex: 0, userType: 'seller')],
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -301,15 +283,15 @@ class SellerDashboardScreen extends StatelessWidget {
     required Color color,
   }) {
     return Container(
-      padding: EdgeInsets.all(s(14)),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: const Color(0xFFF3F3F3),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            blurRadius: 12,
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -318,39 +300,37 @@ class SellerDashboardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(s(10)),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: color.withOpacity(.1),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, color: color, size: s(20)),
+            child: Icon(icon, color: color),
           ),
 
-          SizedBox(height: s(12)),
+          const SizedBox(height: 10),
 
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
-              fontSize: s(11),
+              fontSize: 12,
               letterSpacing: 1.1,
             ),
           ),
-
-          SizedBox(height: s(8)),
 
           Text(
             value,
             style: TextStyle(
               color: color,
-              fontSize: s(20),
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
 
-          SizedBox(height: s(6)),
+          const SizedBox(height: 2),
 
-          Text(subtitle, style: TextStyle(color: color, fontSize: s(11))),
+          Text(subtitle, style: TextStyle(color: color, fontSize: 12)),
         ],
       ),
     );
@@ -375,21 +355,17 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final scale = (width / 390).clamp(0.8, 1.15);
-    double s(double v) => v * scale;
-
     return Container(
-      padding: EdgeInsets.all(s(12)),
+      padding: const EdgeInsets.all(16),
 
       decoration: BoxDecoration(
         color: const Color(0xFFF3F3F3),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.04),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -398,20 +374,20 @@ class ProductCard extends StatelessWidget {
         children: [
           /// IMAGE BOX
           Container(
-            height: s(64),
-            width: s(64),
+            height: 80,
+            width: 80,
             decoration: BoxDecoration(
               color: Colors.orange.shade50,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(18),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.shopping_bag_outlined,
               color: Colors.deepOrange,
-              size: s(28),
+              size: 36,
             ),
           ),
 
-          SizedBox(width: s(12)),
+          const SizedBox(width: 16),
 
           /// TEXTS
           Expanded(
@@ -420,29 +396,29 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    fontSize: s(16),
+                  style: const TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.black87,
                   ),
                 ),
 
-                SizedBox(height: s(8)),
+                const SizedBox(height: 8),
 
                 Text(
                   category,
-                  style: TextStyle(color: Colors.grey, fontSize: s(12)),
+                  style: const TextStyle(color: Colors.grey, fontSize: 14),
                 ),
 
-                SizedBox(height: s(10)),
+                const SizedBox(height: 12),
 
                 Row(
                   children: [
                     Text(
                       price,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.deepOrange,
-                        fontSize: s(16),
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -450,14 +426,14 @@ class ProductCard extends StatelessWidget {
                     const Spacer(),
 
                     Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: s(10),
-                        vertical: s(6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 7,
                       ),
 
                       decoration: BoxDecoration(
                         color: statusColor.withOpacity(.1),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(30),
                       ),
 
                       child: Text(
@@ -465,7 +441,7 @@ class ProductCard extends StatelessWidget {
                         style: TextStyle(
                           color: statusColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: s(11),
+                          fontSize: 11,
                         ),
                       ),
                     ),

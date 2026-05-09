@@ -1,9 +1,9 @@
 // بسم الله الرحمن الرحيم //
-import '../app_bar.dart';
-import '../customerHomeWidgets/widgets/categoryList.dart';
-import '../customerFooter.dart';
-import '../customerHomeWidgets/widgets/searchBar.dart';
-import '../customerHomeWidgets/widgets/shopsView.dart';
+import '../../app_bar.dart';
+import '../../customerHomeWidgets/widgets/categoryList.dart';
+import '../../customerFooter.dart';
+import '../../customerHomeWidgets/widgets/searchBar.dart';
+import '../../customerHomeWidgets/widgets/shopsView.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'Wafrnalak'),
+      appBar: const MyAppBar(),
 
       body: Column(
         children: [
@@ -37,7 +37,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 0)]);
+            return Column(children: [CustomerFooter(activeTabIndex: 0, userType: 'customer')]);
           },
         ),
       ],

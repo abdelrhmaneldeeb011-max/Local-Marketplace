@@ -1,26 +1,19 @@
 // بسم الله الرحمن الرحيم //
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({super.key, required this.title});
-  final String title;
+  const MyAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      automaticallyImplyLeading: false,
       toolbarHeight: 30,
-      title: Text(
-        title.tr(),
-        style: const TextStyle(
-          color: Colors.deepOrange,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
     );
   }
 

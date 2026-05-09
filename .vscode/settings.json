@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
         "لازم"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic",
+    "dart.flutterSdkPath": "/media/dev911/games/Downloads/flutter_linux_3.41.6-stable/flutter"
 }

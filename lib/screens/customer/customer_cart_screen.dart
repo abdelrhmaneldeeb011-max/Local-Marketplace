@@ -1,7 +1,7 @@
-import 'package:Wafrnalak/app_bar.dart';
-import 'package:Wafrnalak/customerFooter.dart';
-import 'package:Wafrnalak/widgets/cartItem.dart';
-import 'package:Wafrnalak/widgets/checkoutView.dart';
+import 'package:wafrnalak/app_bar.dart';
+import 'package:wafrnalak/customerFooter.dart';
+import 'package:wafrnalak/widgets/cartItem.dart';
+import 'package:wafrnalak/widgets/checkoutView.dart';
 import 'package:flutter/material.dart';
 
 class CustomerCartScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'cart'),
+      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
         child: Column(
@@ -45,7 +45,11 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 1)]);
+            return Column(
+              children: [
+                CustomerFooter(activeTabIndex: 1, userType: 'customer'),
+              ],
+            );
           },
         ),
       ],

@@ -22,15 +22,18 @@ class ShopsCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     children: [
-                      Text(
-                        'marketName'.tr(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.black,
+                      Expanded(
+                        child: Text(
+                          'marketName'.tr(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      const Spacer(),
                       Text(
                         'open'.tr(),
                         style: TextStyle(
@@ -45,39 +48,55 @@ class ShopsCard extends StatelessWidget {
                 SizedBox(height: 4),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Icon(
-                        Icons.location_on,
-                        color: Colors.deepOrange[500],
-                        size: 16,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.deepOrange[500],
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'location'.tr(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.deepOrange[300],
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'location'.tr(),
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.deepOrange[300],
-                        ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.circle, size: 6, color: Colors.grey),
+                          const SizedBox(width: 4),
+                          Text(
+                            'categoryName'.tr(),
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 8),
-                      const Icon(Icons.circle, size: 6, color: Colors.grey),
-                      const SizedBox(width: 4),
-                      Text(
-                        'categoryName'.tr(),
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                      const SizedBox(width: 8),
-                      const Icon(Icons.circle, size: 6, color: Colors.grey),
-                      const SizedBox(width: 4),
-                      Text(
-                        'description'.tr(),
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.circle, size: 6, color: Colors.grey),
+                          const SizedBox(width: 4),
+                          Text(
+                            'description'.tr(),
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
               ],
             ),
           ),

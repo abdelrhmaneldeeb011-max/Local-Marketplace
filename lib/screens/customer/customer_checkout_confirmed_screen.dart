@@ -1,4 +1,5 @@
-import 'package:Wafrnalak/screens/customer_orders_screen.dart';
+import 'package:wafrnalak/screens/customer/customer_home_screen.dart';
+import 'package:wafrnalak/screens/customer/customer_orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -29,7 +30,7 @@ class OrderConfirmedPage extends StatelessWidget {
                 height: 120,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(.1),
+                  color: Colors.green.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -267,7 +268,15 @@ class OrderConfirmedPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CustomerOrdersScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
                   child: Text(
                     "track_order".tr(),
                     style: const TextStyle(
@@ -290,7 +299,15 @@ class OrderConfirmedPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CustomerHomeScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
                   child: Text(
                     "back_to_home".tr(),
                     style: const TextStyle(
