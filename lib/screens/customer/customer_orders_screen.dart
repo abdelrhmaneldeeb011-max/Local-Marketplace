@@ -152,11 +152,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-<<<<<<< HEAD:lib/screens/customer/customer_orders_screen.dart
             return Column(children: [CustomerFooter(activeTabIndex: 2, userType: 'customer',)]);
-=======
-            return Column(children: [CustomerFooter(activeTabIndex: 2)]);
->>>>>>> 7158d147d2ca2a26a975c4d42be9d2a12de527a9:lib/screens/customer_orders_screen.dart
           },
         ),
       ],

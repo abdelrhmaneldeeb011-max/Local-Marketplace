@@ -1,8 +1,4 @@
-<<<<<<< HEAD:lib/screens/customer/customer_checkout_screen.dart
 import 'package:wafrnalak/screens/customer/customer_checkout_confirmed_screen.dart';
-=======
-import 'package:wafrnalak/screens/customer_checkout_confirmed_screen.dart';
->>>>>>> 7158d147d2ca2a26a975c4d42be9d2a12de527a9:lib/screens/customer_checkout_screen.dart
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
