@@ -1,5 +1,5 @@
-import 'package:wafrnalak/screens/customer_orders_screen.dart';
-import 'package:wafrnalak/screens/customer_home_screen.dart';
+import 'package:wafrnalak/screens/customer/customer_home_screen.dart';
+import 'package:wafrnalak/screens/customer/customer_orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 

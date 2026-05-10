@@ -12,16 +12,16 @@ class Role extends StatefulWidget {
 
 class _RoleState extends State<Role> {
   Color primaryColor = Colors.deepOrange;
-  Color socondaryColor = Colors.blueGrey;
+  Color secondaryColor = Colors.blueGrey;
 
   void _selectRole(String role) {
     setState(() {
       if (role == 'customer') {
         primaryColor = Colors.deepOrange;
-        socondaryColor = Colors.grey;
+        secondaryColor = Colors.blueGrey;
       } else {
-        primaryColor = Colors.grey;
-        socondaryColor = Colors.deepOrange;
+        primaryColor = Colors.blueGrey;
+        secondaryColor = Colors.deepOrange;
       }
     });
     widget.onRoleChanged?.call(role);
@@ -29,14 +29,13 @@ class _RoleState extends State<Role> {
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.locale;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: Row(
         children: [
           Expanded(
             child: Button(
-              textButton: 'Customer'.tr(),
+              textButton: Text('Customer'.tr(), style: TextStyle(color: primaryColor, fontSize: 14)),
               icon: const Icon(Icons.person),
               iconSize: 20,
               textsize: 14,
@@ -50,13 +49,13 @@ class _RoleState extends State<Role> {
           const SizedBox(width: 25),
           Expanded(
             child: Button(
-              textButton: 'Seller'.tr(),
+              textButton: Text('Seller'.tr(), style: TextStyle(color: secondaryColor, fontSize: 14)),
               icon: const Icon(Icons.store),
               iconSize: 20,
               textsize: 14,
               backgroundColor: Colors.white,
-              textcolor: socondaryColor,
-              iconColor: socondaryColor,
+              textcolor: secondaryColor,
+              iconColor: secondaryColor,
               shadowcolor: Colors.deepOrange,
               onTap: () => _selectRole('seller'),
             ),

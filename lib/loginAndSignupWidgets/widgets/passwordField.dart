@@ -1,3 +1,4 @@
+// بسم الله الرحمن الرحيم //
 import 'package:wafrnalak/loginAndSignupWidgets/widgets/custom_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class Passwordfield extends StatefulWidget {
     this.onTap,
     this.controller,
   });
+
   final String text;
   final String? forgetPasswordText;
   final VoidCallback? onTap;
@@ -20,33 +22,38 @@ class Passwordfield extends StatefulWidget {
 }
 
 class _PasswordfieldState extends State<Passwordfield> {
-  bool O = true;
+  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.locale;
+    final showForgot =
+        widget.forgetPasswordText != null &&
+        widget.forgetPasswordText!.isNotEmpty;
+
     return CustomInputField(
       controller: widget.controller,
       label: widget.text.tr(),
       icon: Icons.lock,
       hint: '********',
-      isPassword: O,
+      isPassword: _obscure,
       suffixIcon: IconButton(
-        icon: Icon(O ? Icons.visibility : Icons.visibility_off),
-        onPressed: () => setState(() => O = !O),
+        icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off),
+        onPressed: () => setState(() => _obscure = !_obscure),
       ),
-      trailing: TextButton(
-        style: TextButton.styleFrom(
-          padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-          minimumSize: Size(0, 0),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        ),
-        onPressed: widget.onTap,
-        child: Text(
-          widget.forgetPasswordText!.tr(),
-          style: TextStyle(color: Colors.deepOrange),
-        ),
-      ),
+      trailing: showForgot
+          ? TextButton(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.fromLTRB(0, 0, 6, 0),
+                minimumSize: const Size(0, 0),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              onPressed: widget.onTap,
+              child: Text(
+                widget.forgetPasswordText!.tr(),
+                style: const TextStyle(color: Colors.deepOrange),
+              ),
+            )
+          : null,
     );
   }
 }

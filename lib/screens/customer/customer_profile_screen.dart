@@ -1,14 +1,12 @@
-import 'package:wafrnalak/app_bar.dart';
-import 'package:wafrnalak/customerFooter.dart';
-import 'package:wafrnalak/models/customer.dart';
-import 'package:wafrnalak/providers/auth_provider.dart';
-import 'package:wafrnalak/screens/Login_Screen.dart';
-import 'package:wafrnalak/screens/customer_cart_screen.dart';
-import 'package:wafrnalak/screens/customer_orders_screen.dart';
-import 'package:wafrnalak/services/api_service.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import '../../app_bar.dart';
+import '../../customerFooter.dart';
+import '../../services/auth_service.dart';
+import '../auth/Login_Screen.dart';
+import 'customer_cart_screen.dart';
+import 'customer_orders_screen.dart';
 
 class CustomerProfileScreen extends StatefulWidget {
   const CustomerProfileScreen({super.key});
@@ -18,28 +16,25 @@ class CustomerProfileScreen extends StatefulWidget {
 }
 
 class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
-  Customer? _customer;
+  final _authService = AuthService();
+  User? _user;
   bool _loading = true;
 
   @override
   void initState() {
     super.initState();
-    _load();
+    _loadUser();
   }
 
-  Future<void> _load() async {
-    try {
-      final c = await ApiService.getCustomerMe();
-      if (mounted) setState(() => _customer = c);
-    } catch (e) {
-      // ignore
-    } finally {
-      if (mounted) setState(() => _loading = false);
-    }
+  void _loadUser() {
+    setState(() {
+      _user = _authService.currentUser;
+      _loading = false;
+    });
   }
 
   Future<void> _logout() async {
-    await context.read<AuthProvider>().logout();
+    await _authService.logout();
     if (mounted) {
       Navigator.pushAndRemoveUntil(
         context,
@@ -51,14 +46,14 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final name = _customer?.fullName ?? 'name';
-    final email = _customer?.email ?? 'email@mail.com';
-    final credits = _customer?.credits ?? 0;
+    final name = _user?.displayName ?? 'User';
+    final email = _user?.email ?? 'email@mail.com';
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const MyAppBar(),
       body: _loading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
               child: ListView(
@@ -83,7 +78,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                               name,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 24,
                                 color: Colors.black,
@@ -93,7 +88,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                               email,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                                 color: Colors.black,
@@ -137,7 +132,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'CREDITS',
                                     style: TextStyle(
                                       fontSize: 14,
@@ -148,14 +143,14 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        credits.toStringAsFixed(0),
+                                        '0',
                                         style: TextStyle(
                                           color: Colors.deepOrange,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 22,
                                         ),
                                       ),
-                                      SizedBox(width: 2),
+                                      const SizedBox(width: 2),
                                       Text(
                                         'Waff',
                                         style: TextStyle(
@@ -185,7 +180,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'TOTAL SAVINGS',
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -197,16 +192,16 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                                   const SizedBox(height: 8),
                                   Row(
                                     children: [
-                                      Text(
-                                        '588',
+                                      const Text(
+                                        '0',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 24,
                                         ),
                                       ),
-                                      SizedBox(width: 5),
-                                      Text(
+                                      const SizedBox(width: 5),
+                                      const Text(
                                         'EGP',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -225,7 +220,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                     ],
                   ),
                   const SizedBox(height: 25),
-                  Text(
+                  const Text(
                     'ACCOUNT & COMMERCE',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
@@ -235,18 +230,18 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                     children: [
                       ListTile(
                         leading: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.brown.shade50,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.inventory_2_outlined,
                             color: Colors.brown,
                           ),
                         ),
-                        title: Text("My Orders"),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        title: Text("My Orders".tr()),
+                        trailing: const Icon(Icons.arrow_forward_ios),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -257,18 +252,18 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                       const SizedBox(height: 10),
                       ListTile(
                         leading: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.brown.shade50,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.shopping_cart_outlined,
                             color: Colors.brown,
                           ),
                         ),
-                        title: Text("My Cart"),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        title: Text("My Cart".tr()),
+                        trailing: const Icon(Icons.arrow_forward_ios),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -279,46 +274,46 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                       const SizedBox(height: 10),
                       ListTile(
                         leading: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.brown.shade50,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Icon(Icons.language, color: Colors.brown),
+                          child: const Icon(Icons.language, color: Colors.brown),
                         ),
                         title: Text(
-                          "Change Language to language".tr(),
+                          "Change Language".tr(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         onTap: () {
                           if (context.locale.languageCode == 'en') {
-                            context.setLocale(Locale('ar'));
+                            context.setLocale(const Locale('ar'));
                           } else {
-                            context.setLocale(Locale('en'));
+                            context.setLocale(const Locale('en'));
                           }
                         },
                       ),
                       const SizedBox(height: 20),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        padding: EdgeInsets.all(5),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: Colors.red[50],
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: ListTile(
                           leading: Container(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: Colors.red[100],
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Icon(Icons.logout, color: Colors.red),
+                            child: const Icon(Icons.logout, color: Colors.red),
                           ),
                           title: Text(
-                            "Logout",
-                            style: TextStyle(
+                            "Logout".tr(),
+                            style: const TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
                             ),
@@ -334,7 +329,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return const Column(children: [CustomerFooter(activeTabIndex: 3)]);
+            return Column(children: [CustomerFooter(activeTabIndex: 3, userType: 'customer')]);
           },
         ),
       ],

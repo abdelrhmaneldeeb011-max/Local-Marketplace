@@ -1,5 +1,3 @@
-import '../../models/category.dart';
-import '../../services/api_service.dart';
 import '../../widgets/button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,29 +11,15 @@ class Categorylist extends StatefulWidget {
 }
 
 class _CategorylistState extends State<Categorylist> {
-  List<Category> _categories = [];
+  final List<Map<String, dynamic>> _categories = [
+    {'id': 1, 'name': 'Grocery', 'icon': Icons.shopping_basket},
+    {'id': 2, 'name': 'Bakery', 'icon': Icons.bakery_dining},
+    {'id': 3, 'name': 'Electronics', 'icon': Icons.devices},
+    {'id': 4, 'name': 'Fashion', 'icon': Icons.dry_cleaning},
+    {'id': 5, 'name': 'Health', 'icon': Icons.local_hospital},
+  ];
+
   int? _selectedId;
-  bool _loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    try {
-      final cats = await ApiService.getCategories();
-      if (mounted) {
-        setState(() {
-          _categories = cats;
-          _loading = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) setState(() => _loading = false);
-    }
-  }
 
   void _select(int? id) {
     setState(() => _selectedId = id);
@@ -44,12 +28,6 @@ class _CategorylistState extends State<Categorylist> {
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) {
-      return const SizedBox(
-        height: 40,
-        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
-      );
-    }
     return SizedBox(
       height: 40,
       child: ListView(
@@ -64,17 +42,22 @@ class _CategorylistState extends State<Categorylist> {
               ),
             ),
             onPressed: () => _select(null),
-            child: Text('All'.tr(), style: TextStyle(color: _selectedId == null ? Colors.white : Colors.deepOrange)),
+            child: Text(
+              'All'.tr(),
+              style: TextStyle(
+                color: _selectedId == null ? Colors.white : Colors.deepOrange,
+              ),
+            ),
           ),
           const SizedBox(width: 15),
           ..._categories.map((c) {
-            final selected = _selectedId == c.id;
+            final selected = _selectedId == c['id'];
             return Padding(
               padding: const EdgeInsets.only(right: 15),
               child: Button(
-                icon: const Icon(Icons.category),
-                textButton: c.name,
-                onTap: () => _select(c.id),
+                icon: Icon(c['icon']),
+                textButton: c['name'].tr(),
+                onTap: () => _select(c['id']),
                 iconSize: 18,
                 iconColor: selected ? Colors.white : Colors.deepOrange,
                 backgroundColor: selected ? Colors.deepOrange : Colors.grey[300]!,

@@ -1,7 +1,7 @@
 import 'package:wafrnalak/app_bar.dart';
 import 'package:wafrnalak/customerFooter.dart';
 import 'package:wafrnalak/models/cart.dart' as models;
-import 'package:wafrnalak/screens/customer_checkout_confirmed_screen.dart';
+import 'package:wafrnalak/screens/customer/customer_checkout_confirmed_screen.dart';
 import 'package:wafrnalak/services/api_service.dart';
 import 'package:wafrnalak/widgets/cartItem.dart';
 import 'package:wafrnalak/widgets/checkoutView.dart';
@@ -115,7 +115,11 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 1)]);
+            return Column(
+              children: [
+                CustomerFooter(activeTabIndex: 1, userType: 'customer'),
+              ],
+            );
           },
         ),
       ],

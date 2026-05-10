@@ -1,4 +1,3 @@
-                    // بسم الله الرحمن الرحيم //
 import 'package:flutter/material.dart';
 
 class CustomInputField extends StatelessWidget {
@@ -28,7 +27,6 @@ class CustomInputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // السطر اللي فيه العنوان وزرار "نسيت كلمة المرور"
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -39,7 +37,7 @@ class CustomInputField extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ?trailing, // لو بعت زرار هيظهره هنا
+              if (trailing != null) trailing!,
             ],
           ),
           const SizedBox(height: 6),
