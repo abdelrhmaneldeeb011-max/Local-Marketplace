@@ -9,7 +9,7 @@ import 'screens/auth/Login_Screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await _initializeFirebaseIfSupported();
   await EasyLocalization.ensureInitialized();
 
   runApp(
@@ -23,6 +23,14 @@ void main() async {
       ),
     ),
   );
+}
+
+Future<void> _initializeFirebaseIfSupported() async {
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } on UnsupportedError {
+    debugPrint('Firebase is not configured for this platform. Continuing without Firebase init.');
+  }
 }
 
 class Wafrnalak extends StatelessWidget {

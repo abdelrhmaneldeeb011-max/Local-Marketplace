@@ -10,10 +10,31 @@ class AuthException implements Exception {
 }
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  AuthService() : _auth = _resolveAuth();
+
+  final FirebaseAuth? _auth;
+
+  static FirebaseAuth? _resolveAuth() {
+    try {
+      return FirebaseAuth.instance;
+    } on FirebaseException {
+      return null;
+    }
+  }
+
+  FirebaseAuth get _requireAuth {
+    final auth = _auth;
+    if (auth == null) {
+      throw AuthException(
+        code: 'firebase-not-configured',
+        message: 'Firebase Auth is not configured for this platform.',
+      );
+    }
+    return auth;
+  }
 
   // ✅ Stream للـ UI يستمع لحالة المستخدم
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
+  Stream<User?> get authStateChanges => _requireAuth.authStateChanges();
 
   // ✅ التحقق من قوة الباسورد
   bool isPasswordStrong(String password) {
@@ -27,7 +48,7 @@ class AuthService {
   // ✅ تسجيل الدخول مع Error Messages واضحة
   Future<User?> login(String email, String password) async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await _requireAuth.signInWithEmailAndPassword(
         email: email.trim(),
         password: password.trim(),
       );
@@ -39,7 +60,7 @@ class AuthService {
           return user;
         } else {
           // ✅ بنعمل sign out عشان ميفضلش logged in من غير تأكيد
-          await _auth.signOut();
+          await _requireAuth.signOut();
           throw AuthException(
             code: 'email-not-verified',
             message: 'من فضلك فعّل إيميلك الأول.\nتحقق من inbox بتاعك.',
@@ -67,7 +88,7 @@ class AuthService {
     }
 
     try {
-      UserCredential userCredential = await _auth
+      UserCredential userCredential = await _requireAuth
           .createUserWithEmailAndPassword(
             email: email.trim(),
             password: password.trim(),
@@ -84,7 +105,7 @@ class AuthService {
         debugPrint("📧 Verification email sent to: ${user.email}");
 
         // ✅ Sign out بعد التسجيل عشان يفعّل الإيميل الأول
-        await _auth.signOut();
+        await _requireAuth.signOut();
       }
       return user;
     } on FirebaseAuthException catch (e) {
@@ -97,7 +118,7 @@ class AuthService {
 
   // ✅ إعادة إرسال إيميل التفعيل
   Future<void> resendVerificationEmail() async {
-    User? user = _auth.currentUser;
+    User? user = _requireAuth.currentUser;
     if (user != null && !user.emailVerified) {
       await user.sendEmailVerification();
       debugPrint("📧 Verification email re-sent to: ${user.email}");
@@ -112,7 +133,7 @@ class AuthService {
   // ✅ إعادة تعيين كلمة المرور
   Future<void> resetPassword(String email) async {
     try {
-      await _auth.sendPasswordResetEmail(email: email.trim());
+      await _requireAuth.sendPasswordResetEmail(email: email.trim());
       debugPrint("📧 Password reset email sent to: $email");
     } on FirebaseAuthException catch (e) {
       throw AuthException(
@@ -124,18 +145,18 @@ class AuthService {
 
   // ✅ التحقق لو الإيميل اتفعّل
   Future<bool> checkEmailVerified() async {
-    await _auth.currentUser?.reload();
-    return _auth.currentUser?.emailVerified ?? false;
+    await _requireAuth.currentUser?.reload();
+    return _requireAuth.currentUser?.emailVerified ?? false;
   }
 
   // ✅ تسجيل الخروج
   Future<void> logout() async {
-    await _auth.signOut();
+    await _requireAuth.signOut();
     debugPrint("✅ User Logged Out");
   }
 
   // ✅ المستخدم الحالي
-  User? get currentUser => _auth.currentUser;
+  User? get currentUser => _requireAuth.currentUser;
 
   // ✅ ترجمة Firebase error codes لرسائل عربية
   String _getArabicErrorMessage(String code) {
