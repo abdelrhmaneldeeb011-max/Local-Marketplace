@@ -3,7 +3,16 @@ import 'package:wafrnalak/widgets/longButton.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key});
+  final double total;
+  final int itemCount;
+  final VoidCallback? onCheckout;
+
+  const CheckoutView({
+    super.key,
+    required this.total,
+    required this.itemCount,
+    this.onCheckout,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +34,7 @@ class CheckoutView extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'EGP 450',
+                    'EGP ${total.toStringAsFixed(0)}',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -47,7 +56,7 @@ class CheckoutView extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '3 Items',
+                    '$itemCount Items',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -59,7 +68,23 @@ class CheckoutView extends StatelessWidget {
             ],
           ),
           SizedBox(height: 18),
-          LongButton(text: 'CHECKOUT', child: CustomerCheckoutScreen()),
+          onCheckout != null
+              ? SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepOrange,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    onPressed: onCheckout,
+                    child: Text(
+                      'CHECKOUT',
+                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                )
+              : LongButton(text: 'CHECKOUT', child: CustomerCheckoutScreen()),
         ],
       ),
     );

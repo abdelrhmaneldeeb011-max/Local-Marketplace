@@ -16,6 +16,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   rename_app: ^1.6.5
   flutter_native_splash: ^2.4.7
+  http: ^1.2.2
+  shared_preferences: ^2.3.5
 
 dev_dependencies:
   flutter_test:

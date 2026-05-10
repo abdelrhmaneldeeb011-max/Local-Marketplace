@@ -8,10 +8,12 @@ class Passwordfield extends StatefulWidget {
     required this.text,
     this.forgetPasswordText,
     this.onTap,
+    this.controller,
   });
   final String text;
   final String? forgetPasswordText;
   final VoidCallback? onTap;
+  final TextEditingController? controller;
 
   @override
   State<Passwordfield> createState() => _PasswordfieldState();
@@ -24,6 +26,7 @@ class _PasswordfieldState extends State<Passwordfield> {
   Widget build(BuildContext context) {
     final currentLocale = context.locale;
     return CustomInputField(
+      controller: widget.controller,
       label: widget.text.tr(),
       icon: Icons.lock,
       hint: '********',

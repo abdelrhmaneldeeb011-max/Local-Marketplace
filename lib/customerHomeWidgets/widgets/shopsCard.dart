@@ -1,8 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../../models/product.dart';
+import '../../services/api_service.dart';
 
 class ShopsCard extends StatelessWidget {
-  const ShopsCard({super.key});
+  final Product product;
+  final VoidCallback? onAddToCart;
+
+  const ShopsCard({super.key, required this.product, this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,25 @@ class ShopsCard extends StatelessWidget {
             color: Colors.grey[200],
             child: Column(
               children: [
-                const Image(image: AssetImage('assets/img/MarketPhoto.png')),
+                product.imageUrl != null && product.imageUrl!.isNotEmpty
+                    ? Image.network(
+                        '${ApiService.baseUrl}${product.imageUrl}',
+                        height: 140,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Image.asset(
+                          'assets/img/MarketPhoto.png',
+                          height: 140,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Image.asset(
+                        'assets/img/MarketPhoto.png',
+                        height: 140,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -24,7 +46,7 @@ class ShopsCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'marketName'.tr(),
+                          product.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -35,10 +57,10 @@ class ShopsCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'open'.tr(),
+                        '${product.price.toStringAsFixed(0)} EGP',
                         style: TextStyle(
                           color: Colors.deepOrange,
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -48,50 +70,19 @@ class ShopsCard extends StatelessWidget {
                 SizedBox(height: 4),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Wrap(
-                    spacing: 8,
-                    runSpacing: 4,
-                    crossAxisAlignment: WrapCrossAlignment.center,
+                  child: Row(
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.deepOrange[500],
-                            size: 16,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'location'.tr(),
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.deepOrange[300],
-                            ),
-                          ),
-                        ],
+                      Expanded(
+                        child: Text(
+                          product.categoryName ?? product.description ?? '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                        ),
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.circle, size: 6, color: Colors.grey),
-                          const SizedBox(width: 4),
-                          Text(
-                            'categoryName'.tr(),
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.circle, size: 6, color: Colors.grey),
-                          const SizedBox(width: 4),
-                          Text(
-                            'description'.tr(),
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        ],
+                      IconButton(
+                        icon: Icon(Icons.add_shopping_cart, color: Colors.deepOrange, size: 20),
+                        onPressed: onAddToCart,
                       ),
                     ],
                   ),

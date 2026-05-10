@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import '../models/cart.dart' as models;
+import '../services/api_service.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+class CartItemWidget extends StatelessWidget {
+  final models.CartItem item;
+  final VoidCallback? onQuantityChanged;
+  final VoidCallback? onRemove;
+
+  const CartItemWidget({
+    super.key,
+    required this.item,
+    this.onQuantityChanged,
+    this.onRemove,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,67 +24,95 @@ class CartItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                'assets/img/MarketPhoto.png',
-                height: 100,
-                width: 100,
-                fit: BoxFit.cover,
-              ),
+              child: item.imageUrl != null && item.imageUrl!.isNotEmpty
+                  ? Image.network(
+                      '${ApiService.baseUrl}${item.imageUrl}',
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
+                        'assets/img/MarketPhoto.png',
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Image.asset(
+                      'assets/img/MarketPhoto.png',
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
             ),
             SizedBox(width: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'item',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  'categoryitem',
-                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text(
-                      '150 EGP',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.deepOrange,
-                      ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.productName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
-                    SizedBox(width: 50),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        height: 30,
-                        color: Colors.grey[200],
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.remove, size: 15),
-                              color: Colors.deepOrange,
-
-                              onPressed: () {},
-                            ),
-                            Text('1'),
-                            IconButton(
-                              icon: const Icon(Icons.add, size: 15),
-                              color: Colors.deepOrange,
-                              onPressed: () {},
-                            ),
-                          ],
+                  ),
+                  Text(
+                    item.categoryName ?? '',
+                    style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        '${item.price.toStringAsFixed(0)} EGP',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.deepOrange,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Spacer(),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Container(
+                          height: 30,
+                          color: Colors.grey[200],
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.remove, size: 15),
+                                color: Colors.deepOrange,
+                                onPressed: () async {
+                                  if (item.quantity > 1) {
+                                    await ApiService.addToCart(item.productId, item.quantity - 1);
+                                    onQuantityChanged?.call();
+                                  }
+                                },
+                              ),
+                              Text('${item.quantity}'),
+                              IconButton(
+                                icon: const Icon(Icons.add, size: 15),
+                                color: Colors.deepOrange,
+                                onPressed: () async {
+                                  await ApiService.addToCart(item.productId, item.quantity + 1);
+                                  onQuantityChanged?.call();
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete_outline, color: Colors.red),
+                        onPressed: onRemove,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -3,7 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Role extends StatefulWidget {
-  const Role({super.key});
+  const Role({super.key, this.onRoleChanged});
+  final ValueChanged<String>? onRoleChanged;
 
   @override
   State<Role> createState() => _RoleState();
@@ -12,6 +13,20 @@ class Role extends StatefulWidget {
 class _RoleState extends State<Role> {
   Color primaryColor = Colors.deepOrange;
   Color socondaryColor = Colors.blueGrey;
+
+  void _selectRole(String role) {
+    setState(() {
+      if (role == 'customer') {
+        primaryColor = Colors.deepOrange;
+        socondaryColor = Colors.grey;
+      } else {
+        primaryColor = Colors.grey;
+        socondaryColor = Colors.deepOrange;
+      }
+    });
+    widget.onRoleChanged?.call(role);
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentLocale = context.locale;
@@ -29,12 +44,7 @@ class _RoleState extends State<Role> {
               textcolor: primaryColor,
               iconColor: primaryColor,
               shadowcolor: Colors.deepOrange,
-              onTap: () {
-                setState(() {
-                  primaryColor = Colors.deepOrange;
-                  socondaryColor = Colors.grey;
-                });
-              },
+              onTap: () => _selectRole('customer'),
             ),
           ),
           const SizedBox(width: 25),
@@ -48,12 +58,7 @@ class _RoleState extends State<Role> {
               textcolor: socondaryColor,
               iconColor: socondaryColor,
               shadowcolor: Colors.deepOrange,
-              onTap: () {
-                setState(() {
-                  primaryColor = Colors.grey;
-                  socondaryColor = Colors.deepOrange;
-                });
-              },
+              onTap: () => _selectRole('seller'),
             ),
           ),
         ],

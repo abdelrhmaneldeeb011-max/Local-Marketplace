@@ -1,22 +1,23 @@
 // بسم الله الرحمن الرحيم //
-import 'screens/Login_Screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/auth_provider.dart';
+import 'screens/Login_Screen.dart';
 
 void main() async {
-  // التأكد من تهيئة الـ Widgets قبل بدء التطبيق
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
   runApp(
     EasyLocalization(
-      // مسار ملفات الترجمة في مشروعك
       path: 'assets/translations',
-      // اللغات المدعومة (مثلاً العربية والإنجليزية)
       supportedLocales: const [Locale('ar'), Locale('en')],
-      // اللغة الافتراضية
       fallbackLocale: const Locale('en'),
-      child: const Wafrnalak(),
+      child: ChangeNotifierProvider(
+        create: (_) => AuthProvider(),
+        child: const Wafrnalak(),
+      ),
     ),
   );
 }
@@ -29,12 +30,9 @@ class Wafrnalak extends StatelessWidget {
     return MaterialApp(
       color: Colors.white,
       debugShowCheckedModeBanner: false,
-      // ربط إعدادات اللغة بالتطبيق
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-
-      // شاشة البداية
       home: LoginScreen(),
     );
   }
