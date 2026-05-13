@@ -56,7 +56,10 @@ class ApiService {
   static int? get customerId => _customerId;
 
   // ==================== AUTH ====================
-  static Future<Map<String, dynamic>> login(String email, String password) async {
+  static Future<Map<String, dynamic>> login(
+    String email,
+    String password,
+  ) async {
     final response = await http.post(
       Uri.parse('$_baseUrl/api/auth/login'),
       headers: {'Content-Type': 'application/json'},
@@ -127,7 +130,9 @@ class ApiService {
 
   static Future<List<Product>> searchProducts(String query) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/api/products/search?q=${Uri.encodeComponent(query)}'),
+      Uri.parse(
+        '$_baseUrl/api/products/search?q=${Uri.encodeComponent(query)}',
+      ),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -245,7 +250,10 @@ class ApiService {
     throw Exception('Update failed: ${response.body}');
   }
 
-  static Future<void> updatePassword(String oldPassword, String newPassword) async {
+  static Future<void> updatePassword(
+    String oldPassword,
+    String newPassword,
+  ) async {
     final response = await http.put(
       Uri.parse('$_baseUrl/api/customers/me/password'),
       headers: _headers,

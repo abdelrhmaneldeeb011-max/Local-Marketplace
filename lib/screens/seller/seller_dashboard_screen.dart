@@ -8,7 +8,7 @@ class SellerDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final scale = (width / 390).clamp(0.8, 1.15);
-
+          
     return Scaffold(
       backgroundColor: Colors.white,
 

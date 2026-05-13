@@ -21,7 +21,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
   @override
   void initState() {
     super.initState();
-    _load();
+    // _load();
   }
 
   Future<void> _load() async {
@@ -38,7 +38,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
 
   void _filter(String? status) {
     setState(() => _statusFilter = status);
-    _load();
+    // _load();
   }
 
   Future<void> _cancelOrder(int orderId) async {
@@ -78,10 +78,7 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
                         'ORDER ID: ${order.id.toString().padLeft(6, '0')}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[400],
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.grey[400]),
                       ),
                     ),
                     ClipRRect(
@@ -158,7 +155,10 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () => _cancelOrder(order.id),
-                      child: Text('Cancel', style: TextStyle(color: Colors.red)),
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
                   ),
               ],
@@ -221,10 +221,12 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
             if (_loading)
               Center(child: CircularProgressIndicator())
             else if (_orders.isEmpty)
-              Center(child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text('No orders found'.tr()),
-              ))
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text('No orders found'.tr()),
+                ),
+              )
             else
               ..._orders.map(_buildOrderCard),
           ],
@@ -233,7 +235,11 @@ class _CustomerOrdersScreenState extends State<CustomerOrdersScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 2, userType: 'customer',)]);
+            return Column(
+              children: [
+                CustomerFooter(activeTabIndex: 2, userType: 'customer'),
+              ],
+            );
           },
         ),
       ],

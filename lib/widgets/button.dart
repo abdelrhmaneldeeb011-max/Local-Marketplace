@@ -18,7 +18,7 @@ class Button extends StatelessWidget {
   final double iconSize;
   final Color iconColor;
   final Color backgroundColor;
-  final Widget textButton;
+  final  String textButton;
   final Color textcolor;
   final double textsize;
   final VoidCallback? onTap;
@@ -35,7 +35,7 @@ class Button extends StatelessWidget {
         shadowColor: shadowcolor,
       ),
       icon: Icon(icon.icon, size: iconSize, color: iconColor),
-      label: textButton,
+      label: Text(textButton),
     );
   }
 }

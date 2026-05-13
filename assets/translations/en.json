@@ -46,5 +46,13 @@
   "manage_users": "Manage Users",
   "owner": "Owner",
   "block": "Block",
-  "unblock": "Unblock"
+  "unblock": "Unblock",
+  
+  "Items in your Cart": "Items in your Cart",
+  "Your cart is empty": "Your cart is empty",
+  "Checkout": "Checkout",
+  "Total": "Total",
+  "Items": "Items",
+  "incl Tax & Shipping": "Incl. Tax & Shipping",
+  "EGP": "EGP"
 }

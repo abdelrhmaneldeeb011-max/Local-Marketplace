@@ -36,7 +36,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 0, userType: 'customer')]);
+            return Column(
+              children: [
+                CustomerFooter(activeTabIndex: 0, userType: 'customer'),
+              ],
+            );
           },
         ),
       ],

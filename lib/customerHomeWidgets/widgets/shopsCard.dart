@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wafrnalak/services/api_service.dart';
 import '../../models/product.dart';
-import '../../services/api_service.dart';
 
 class ShopsCard extends StatelessWidget {
   final Product product;

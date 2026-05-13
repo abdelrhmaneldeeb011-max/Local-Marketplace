@@ -58,9 +58,9 @@ class _ShopsviewState extends State<Shopsview> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add to cart')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to add to cart')));
       }
     }
   }
@@ -68,9 +68,7 @@ class _ShopsviewState extends State<Shopsview> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Expanded(
-        child: Center(child: CircularProgressIndicator()),
-      );
+      return const Expanded(child: Center(child: CircularProgressIndicator()));
     }
     return Expanded(
       child: ListView(
@@ -88,7 +86,7 @@ class _ShopsviewState extends State<Shopsview> {
                   ),
                 ),
                 TextButton(
-                  onPressed: _load,
+                  onPressed: () {},
                   child: Text(
                     'Refresh'.tr(),
                     style: TextStyle(color: Colors.deepOrange),
@@ -104,10 +102,9 @@ class _ShopsviewState extends State<Shopsview> {
               child: Center(child: Text('No products found'.tr())),
             )
           else
-            ..._products.map((p) => ShopsCard(
-                  product: p,
-                  onAddToCart: () => _addToCart(p),
-                )),
+            ..._products.map(
+              (p) => ShopsCard(product: p, onAddToCart: () => _addToCart(p)),
+            ),
         ],
       ),
     );

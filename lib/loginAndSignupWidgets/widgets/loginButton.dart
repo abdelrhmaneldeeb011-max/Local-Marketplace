@@ -8,7 +8,7 @@ class Loginbutton extends StatelessWidget {
     this.onPressed,
   });
 
-  final Widget text;
+  final String text;
   final VoidCallback? onPressed;
 
   @override

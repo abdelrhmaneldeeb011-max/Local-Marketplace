@@ -26,7 +26,8 @@ class CartItemWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: item.imageUrl != null && item.imageUrl!.isNotEmpty
                   ? Image.network(
-                      '${ApiService.baseUrl}${item.imageUrl}',
+                      // '${ApiService.baseUrl}${item.imageUrl}',
+                      'assets/img/MarketPhoto.png',
                       height: 100,
                       width: 100,
                       fit: BoxFit.cover,
@@ -85,21 +86,13 @@ class CartItemWidget extends StatelessWidget {
                               IconButton(
                                 icon: const Icon(Icons.remove, size: 15),
                                 color: Colors.deepOrange,
-                                onPressed: () async {
-                                  if (item.quantity > 1) {
-                                    await ApiService.addToCart(item.productId, item.quantity - 1);
-                                    onQuantityChanged?.call();
-                                  }
-                                },
+                                onPressed: () async {},
                               ),
                               Text('${item.quantity}'),
                               IconButton(
                                 icon: const Icon(Icons.add, size: 15),
                                 color: Colors.deepOrange,
-                                onPressed: () async {
-                                  await ApiService.addToCart(item.productId, item.quantity + 1);
-                                  onQuantityChanged?.call();
-                                },
+                                onPressed: () async {},
                               ),
                             ],
                           ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:wafrnalak/app_bar.dart';
 import 'package:wafrnalak/customerFooter.dart';
 import 'package:wafrnalak/models/cart.dart' as models;
@@ -17,6 +18,12 @@ class CustomerCartScreen extends StatefulWidget {
 class _CustomerCartScreenState extends State<CustomerCartScreen> {
   models.Cart _cart = models.Cart(items: [], total: 0);
   bool _loading = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadCart();
+  }
 
   @override
   void initState() {
@@ -42,9 +49,9 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
       if (mounted) setState(() => _cart = cart);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to remove item')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to remove item')));
       }
     }
   }
@@ -60,9 +67,9 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Checkout failed')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Checkout failed')));
       }
     }
   }
@@ -79,12 +86,12 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Items in your Cart',
+              'Items in your Cart'.tr(),
               style: TextStyle(fontSize: 14, color: Colors.grey[500]),
             ),
             SizedBox(height: 8),
             Text(
-              '$itemCount Items',
+              '$itemCount Items'.tr(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -95,14 +102,18 @@ class _CustomerCartScreenState extends State<CustomerCartScreen> {
               child: _loading
                   ? Center(child: CircularProgressIndicator())
                   : _cart.items.isEmpty
-                      ? Center(child: Text('Your cart is empty'))
-                      : ListView(
-                          children: _cart.items.map((item) => CartItemWidget(
-                            item: item,
-                            onQuantityChanged: _loadCart,
-                            onRemove: () => _removeItem(item.productId),
-                          )).toList(),
-                        ),
+                  ? Center(child: Text('Your cart is empty'.tr()))
+                  : ListView(
+                      children: _cart.items
+                          .map(
+                            (item) => CartItemWidget(
+                              item: item,
+                              onQuantityChanged: _loadCart,
+                              onRemove: () => _removeItem(item.productId),
+                            ),
+                          )
+                          .toList(),
+                    ),
             ),
             CheckoutView(
               total: _cart.total,

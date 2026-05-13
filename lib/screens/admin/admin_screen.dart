@@ -45,9 +45,9 @@ class _AdminScreenState extends State<AdminScreen> {
       _load();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update store')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to update store')));
       }
     }
   }
@@ -58,9 +58,9 @@ class _AdminScreenState extends State<AdminScreen> {
       _load();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to delete store')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to delete store')));
       }
     }
   }
@@ -71,9 +71,9 @@ class _AdminScreenState extends State<AdminScreen> {
       _load();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update user')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to update user')));
       }
     }
   }
@@ -84,9 +84,9 @@ class _AdminScreenState extends State<AdminScreen> {
       _load();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to delete user')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to delete user')));
       }
     }
   }
@@ -99,12 +99,7 @@ class _AdminScreenState extends State<AdminScreen> {
         backgroundColor: Colors.red,
         title: Text("admin_panel".tr()),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: _load,
-          ),
-        ],
+        actions: [IconButton(icon: Icon(Icons.refresh), onPressed: () {})],
       ),
       body: _loading
           ? Center(child: CircularProgressIndicator())
@@ -115,11 +110,17 @@ class _AdminScreenState extends State<AdminScreen> {
                 children: [
                   Text(
                     "manage_stores".tr(),
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   if (_stores.isEmpty)
-                    Text('No stores found'.tr(), style: TextStyle(color: Colors.grey)),
+                    Text(
+                      'No stores found'.tr(),
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ..._stores.map((store) {
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -140,11 +141,14 @@ class _AdminScreenState extends State<AdminScreen> {
                                 store.active ? Icons.block : Icons.check_circle,
                                 color: store.active ? Colors.red : Colors.green,
                               ),
-                              onPressed: () => _toggleStoreStatus(store),
+                              onPressed: () {},
                             ),
                             IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.black54),
-                              onPressed: () => _deleteStore(store.id),
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.black54,
+                              ),
+                              onPressed: () {},
                             ),
                           ],
                         ),
@@ -154,11 +158,17 @@ class _AdminScreenState extends State<AdminScreen> {
                   const SizedBox(height: 25),
                   Text(
                     "manage_users".tr(),
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   if (_users.isEmpty)
-                    Text('No users found'.tr(), style: TextStyle(color: Colors.grey)),
+                    Text(
+                      'No users found'.tr(),
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ..._users.map((user) {
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -176,9 +186,11 @@ class _AdminScreenState extends State<AdminScreen> {
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: user.blocked ? Colors.green : Colors.red,
+                                backgroundColor: user.blocked
+                                    ? Colors.green
+                                    : Colors.red,
                               ),
-                              onPressed: () => _toggleBlockUser(user),
+                              onPressed: () {},
                               child: Text(
                                 user.blocked ? "unblock".tr() : "block".tr(),
                               ),
@@ -186,7 +198,7 @@ class _AdminScreenState extends State<AdminScreen> {
                             const SizedBox(width: 8),
                             IconButton(
                               icon: const Icon(Icons.delete),
-                              onPressed: () => _deleteUser(user.id),
+                              onPressed: () {},
                             ),
                           ],
                         ),

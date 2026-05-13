@@ -21,7 +21,7 @@ class _LoginwithState extends State<Loginwith> {
           Expanded(
             child: Button(
               icon: const Icon(Icons.facebook),
-              textButton: Text('facebook'.tr(), style: const TextStyle(color: Colors.black, fontSize: 14)), // ✅
+              textButton: "facebook".tr(), // ✅
               onTap: () {},
               iconSize: 25,
               iconColor: Colors.blueAccent,
@@ -35,7 +35,7 @@ class _LoginwithState extends State<Loginwith> {
           Expanded(
             child: Button(
               icon: const Icon(Icons.g_mobiledata),
-              textButton: Text('google'.tr(), style: const TextStyle(color: Colors.black, fontSize: 14)), // ✅
+              textButton: "google".tr(), // ✅
               onTap: () {},
               iconSize: 35,
               iconColor: Colors.deepOrange,

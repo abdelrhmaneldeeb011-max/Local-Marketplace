@@ -1,5 +1,5 @@
-import '../../widgets/button.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class Role extends StatefulWidget {
@@ -35,7 +35,7 @@ class _RoleState extends State<Role> {
         children: [
           Expanded(
             child: Button(
-              textButton: Text('Customer'.tr(), style: TextStyle(color: primaryColor, fontSize: 14)),
+              textButton: "Customer".tr(),
               icon: const Icon(Icons.person),
               iconSize: 20,
               textsize: 14,
@@ -49,7 +49,7 @@ class _RoleState extends State<Role> {
           const SizedBox(width: 25),
           Expanded(
             child: Button(
-              textButton: Text('Seller'.tr(), style: TextStyle(color: secondaryColor, fontSize: 14)),
+              textButton: "Seller".tr(),
               icon: const Icon(Icons.store),
               iconSize: 20,
               textsize: 14,

@@ -19,6 +19,7 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
   final _authService = AuthService();
   User? _user;
   bool _loading = true;
+  
 
   @override
   void initState() {
@@ -61,7 +62,9 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                   Row(
                     children: [
                       ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(34)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(34),
+                        ),
                         child: const Image(
                           image: AssetImage('assets/img/MarketPhoto.png'),
                           height: 130,
@@ -245,7 +248,9 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const CustomerOrdersScreen()),
+                            MaterialPageRoute(
+                              builder: (_) => const CustomerOrdersScreen(),
+                            ),
                           );
                         },
                       ),
@@ -267,7 +272,9 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const CustomerCartScreen()),
+                            MaterialPageRoute(
+                              builder: (_) => const CustomerCartScreen(),
+                            ),
                           );
                         },
                       ),
@@ -279,7 +286,10 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                             color: Colors.brown.shade50,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(Icons.language, color: Colors.brown),
+                          child: const Icon(
+                            Icons.language,
+                            color: Colors.brown,
+                          ),
                         ),
                         title: Text(
                           "Change Language".tr(),
@@ -287,11 +297,13 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
                           overflow: TextOverflow.ellipsis,
                         ),
                         onTap: () {
-                          if (context.locale.languageCode == 'en') {
-                            context.setLocale(const Locale('ar'));
-                          } else {
-                            context.setLocale(const Locale('en'));
-                          }
+                          setState(() {
+                            if (context.locale.languageCode == 'en') {
+                              context.setLocale(const Locale('ar'));
+                            } else {
+                              context.setLocale(const Locale('en'));
+                            }
+                          });
                         },
                       ),
                       const SizedBox(height: 20),
@@ -329,7 +341,11 @@ class _CustomerProfileScreenState extends State<CustomerProfileScreen> {
       persistentFooterButtons: [
         Builder(
           builder: (context) {
-            return Column(children: [CustomerFooter(activeTabIndex: 3, userType: 'customer')]);
+            return Column(
+              children: [
+                CustomerFooter(activeTabIndex: 3, userType: 'customer'),
+              ],
+            );
           },
         ),
       ],

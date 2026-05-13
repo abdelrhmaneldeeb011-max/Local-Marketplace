@@ -12,11 +12,11 @@ class Categorylist extends StatefulWidget {
 
 class _CategorylistState extends State<Categorylist> {
   final List<Map<String, dynamic>> _categories = [
-    {'id': 1, 'name': 'Grocery', 'icon': Icons.shopping_basket},
-    {'id': 2, 'name': 'Bakery', 'icon': Icons.bakery_dining},
-    {'id': 3, 'name': 'Electronics', 'icon': Icons.devices},
-    {'id': 4, 'name': 'Fashion', 'icon': Icons.dry_cleaning},
-    {'id': 5, 'name': 'Health', 'icon': Icons.local_hospital},
+    {'id': 1, 'name': 'Grocery'.tr(), 'icon': Icons.shopping_basket},
+    {'id': 2, 'name': 'Bakery'.tr(), 'icon': Icons.bakery_dining},
+    {'id': 3, 'name': 'Electronics'.tr(), 'icon': Icons.devices},
+    {'id': 4, 'name': 'Fashion'.tr(), 'icon': Icons.dry_cleaning},
+    {'id': 5, 'name': 'Health'.tr(), 'icon': Icons.local_hospital},
   ];
 
   int? _selectedId;
@@ -36,7 +36,9 @@ class _CategorylistState extends State<Categorylist> {
         children: [
           TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: _selectedId == null ? Colors.deepOrange : Colors.grey[300],
+              backgroundColor: _selectedId == null
+                  ? Colors.deepOrange
+                  : Colors.grey[300],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -56,11 +58,13 @@ class _CategorylistState extends State<Categorylist> {
               padding: const EdgeInsets.only(right: 15),
               child: Button(
                 icon: Icon(c['icon']),
-                textButton: c['name'].tr(),
+                textButton: c['name'],
                 onTap: () => _select(c['id']),
                 iconSize: 18,
                 iconColor: selected ? Colors.white : Colors.deepOrange,
-                backgroundColor: selected ? Colors.deepOrange : Colors.grey[300]!,
+                backgroundColor: selected
+                    ? Colors.deepOrange
+                    : Colors.grey[300]!,
                 textcolor: selected ? Colors.white : Colors.deepOrange,
                 textsize: 12,
                 shadowcolor: Colors.transparent,
